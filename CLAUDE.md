@@ -7,7 +7,8 @@ This repository is a curated awesome-list of papers on **weight-space programmin
 - `papers.yaml`: the single source of truth. It holds `groups` (top-level README sections), `categories` (subsections, each with a `group`), and `papers`.
 - `scripts/build_readme.py`: validates `papers.yaml` and regenerates `README.md`. `--check` is the CI check.
 - `scripts/readme_header.md`: the static README intro, which defines WSP.
-- `scripts/arxiv_lookup.py`: prints verified `papers.yaml` stubs (title, authors, year, url) from the arXiv API. Pass `--abstract` to include abstracts and `--known` to flag duplicates.
+- `scripts/refresh_metadata.py`: fills in missing `date` fields from arXiv and refreshes every `citations` count from Semantic Scholar, stamping `citations_updated`.
+- `scripts/arxiv_lookup.py`: prints verified `papers.yaml` stubs (title, authors, year, date, url) from the arXiv API. Pass `--abstract` to include abstracts and `--known` to flag duplicates.
 - `scripts/arxiv_recent.py`: runs the queries in `search_config.yaml` against the arXiv API for the last N days and lists candidates that are not yet in `papers.yaml`, with abstracts.
 - `search_config.yaml`: keyword starting points for searches.
 - `MAINTENANCE_LOG.md`: one line per maintenance run that changed something.
@@ -41,9 +42,16 @@ A scheduled Claude session runs this routine once a day. It commits directly to 
    python scripts/arxiv_lookup.py --known <id> [<id> ...]
    ```
 
-   Paste the stub into `papers.yaml`, then set `category`, a one-sentence `note` in your own words, and `venue` or `code` only if confirmed (see the rules above). Do not alter the title, authors, year or URL that the lookup printed.
+   Paste the stub into `papers.yaml`, then set `category`, a one-sentence `note` in your own words, and `venue` or `code` only if confirmed (see the rules above). Do not alter the title, authors, year, date or URL that the lookup printed.
 6. **Backfill venue and code.** Look at existing entries that have no `venue` or no `code`. Start with the oldest-added and check about 15 per run. Run `scripts/arxiv_lookup.py` on their IDs to see the current arXiv comment and journal-ref, and check the publisher or OpenReview page or the paper's project page. Fill in a venue or official code link only when a primary source confirms it.
-7. **Regenerate and check.** Run:
+7. **Refresh citations.** On every run, whether or not papers were added, run:
+
+   ```bash
+   python scripts/refresh_metadata.py
+   ```
+
+   It refreshes all citation counts from Semantic Scholar and fills any missing dates. If Semantic Scholar is unreachable or rate-limited after retries, it leaves the counts unchanged; note that in the commit message and carry on.
+8. **Regenerate and check.** Run:
 
    ```bash
    python scripts/build_readme.py
@@ -54,17 +62,18 @@ A scheduled Claude session runs this routine once a day. It commits directly to 
    ```
 
    Both must succeed. If the check fails, fix `papers.yaml`. Do not edit the check to make it pass.
-8. **Log.** If anything was added or backfilled, add one line at the top of the log table in `MAINTENANCE_LOG.md`:
+9. **Log.** If anything was added or backfilled, add one line at the top of the log table in `MAINTENANCE_LOG.md`:
    `| YYYY-MM-DD | added: <short titles (arXiv IDs)>; backfilled: <...> | skipped borderline: <short title (ID): reason>; ... |`
    Always list borderline papers you skipped, so the maintainer can overrule the call.
-9. **Commit and push.** If anything changed, commit to `main` with a message like:
+10. **Commit and push.** If anything changed, commit to `main` with a message like:
 
    ```
    Daily update YYYY-MM-DD: add N papers
 
    - <Title> (arXiv:<id>) [<category>]
    - Backfilled venue for <Title>
+   - Refreshed citation counts
    ```
 
-   Then push to `origin main`. **If nothing new is relevant and nothing was backfilled, make no commit and do not touch the log.**
-10. **Safety.** Do not change the scripts, CI or README template during a maintenance run unless one is broken. In that case, fix it in a separate commit and explain the fix in the commit message. Never rewrite history on `main`.
+   Then push to `origin main`. If only citation counts changed, commit with the message `Daily update YYYY-MM-DD: refresh citation counts` and add no log line. **If nothing changed at all, make no commit.**
+11. **Safety.** Do not change the scripts, CI or README template during a maintenance run unless one is broken. In that case, fix it in a separate commit and explain the fix in the commit message. Never rewrite history on `main`.

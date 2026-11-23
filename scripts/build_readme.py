@@ -25,9 +25,10 @@ DATA = ROOT / "papers.yaml"
 README = ROOT / "README.md"
 TEMPLATE = ROOT / "scripts" / "readme_header.md"
 
-REQUIRED = ("title", "authors", "year", "url", "category", "note")
+REQUIRED = ("title", "authors", "year", "date", "url", "category", "note")
 OPTIONAL = ("venue", "code")
-ALLOWED = set(REQUIRED) | set(OPTIONAL)
+ALLOWED = set(REQUIRED) | set(OPTIONAL) | {"citations"}
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 ARXIV_RE = re.compile(r"^https://arxiv\.org/abs/(\d{4}\.\d{4,5})$")
 URL_RE = re.compile(r"^https://[^\s]+$")
 MAX_NOTE = 300
@@ -94,6 +95,14 @@ def validate(data: dict) -> list[str]:
         year = p.get("year")
         if year is not None and (not isinstance(year, int) or not 1980 <= year <= this_year + 1):
             errors.append(f"{label}: year must be an integer between 1980 and {this_year + 1}")
+        d = p.get("date")
+        if d is not None:
+            if not isinstance(d, str) or not DATE_RE.match(d):
+                errors.append(f"{label}: date must be a quoted string 'YYYY-MM-DD'")
+            elif isinstance(year, int) and int(d[:4]) != year:
+                errors.append(f"{label}: date {d} does not match year {year}")
+        if "citations" in p and (not isinstance(p["citations"], int) or p["citations"] < 0):
+            errors.append(f"{label}: citations must be a non-negative integer")
         for key in ("url", "code"):
             val = p.get(key)
             if isinstance(val, str) and val and not URL_RE.match(val):
@@ -127,16 +136,20 @@ def validate(data: dict) -> list[str]:
 
 
 def sort_key(p: dict):
-    # Newest first: year desc, then arXiv id desc (encodes month), then title.
+    # Newest first by publication date, then arXiv id, then title.
     aid = arxiv_id(p["url"]) or "0000.00000"
     yymm, num = aid.split(".")
-    return (-p["year"], -int(yymm), -int(num), p["title"].lower())
+    return (-int(p["date"].replace("-", "")), -int(yymm), -int(num), p["title"].lower())
 
 
 def render_entry(p: dict) -> str:
     venue = p.get("venue", "arXiv preprint")
     authors = p["authors"]
-    line = f"- [{p['title']}]({p['url']}) - *{authors} ({p['year']}), {venue}.* {p['note']}"
+    meta = f"{authors}, {venue}. Published {p['date']}"
+    if "citations" in p:
+        n = p["citations"]
+        meta += f", {n:,} citation{'s' if n != 1 else ''}"
+    line = f"- [{p['title']}]({p['url']}) - *{meta}.* {p['note']}"
     if p.get("code"):
         line += f" [[Code]({p['code']})]"
     return line
@@ -154,6 +167,12 @@ def render(data: dict) -> str:
     cats_in = {g["id"]: [c for c in cats if c["group"] == g["id"]] for g in groups}
 
     out = [header]
+    when = data.get("citations_updated")
+    out.append(
+        "Publication dates are those of the first public version, usually arXiv v1."
+        + (f" Citation counts are from [Semantic Scholar](https://www.semanticscholar.org/), updated {when}." if when else "")
+        + "\n"
+    )
     out.append("## Contents\n")
     for g in groups:
         n = sum(len(by_cat[c["id"]]) for c in cats_in[g["id"]])

@@ -6,7 +6,7 @@ Usage:
     python scripts/arxiv_lookup.py --abstract 2202.05262      # also print the abstract
     python scripts/arxiv_lookup.py --known 2202.05262         # report whether already in papers.yaml
 
-Title, authors, year and URL in the stub come straight from the arXiv API,
+Title, authors, year, date and URL in the stub come straight from the arXiv API,
 so entries added this way are verified against arXiv. The 'category' and
 'note' fields are left for a human (or the maintenance session) to fill in.
 Year is the year of the first arXiv version.
@@ -105,6 +105,7 @@ def main() -> int:
         print(f"  - title: {yq(r['title'])}")
         print(f"    authors: {yq(format_authors(r['authors']))}")
         print(f"    year: {r['published'][:4]}")
+        print(f"    date: '{r['published'][:10]}'")
         print(f"    url: https://arxiv.org/abs/{i}")
         extra = "; ".join(x for x in (r["comment"], r["journal_ref"]) if x)
         if extra:

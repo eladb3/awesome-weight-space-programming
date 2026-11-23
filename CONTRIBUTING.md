@@ -11,7 +11,7 @@ Out of scope: ordinary fine-tuning, PEFT methods that are only a training recipe
 ## Adding a paper
 
 1. Install the one dependency: `pip install -r requirements.txt`.
-2. Get a verified stub from arXiv (title, authors, year and URL come from the arXiv API):
+2. Get a verified stub from arXiv (title, authors, year, date and URL come from the arXiv API):
 
    ```bash
    python scripts/arxiv_lookup.py --known 2202.05262
@@ -24,6 +24,7 @@ Out of scope: ordinary fine-tuning, PEFT methods that are only a training recipe
    - title: "Locating and Editing Factual Associations in GPT"
      authors: "Kevin Meng et al."
      year: 2022
+     date: '2022-02-10'
      venue: "NeurIPS 2022"          # optional; omit for preprints
      url: https://arxiv.org/abs/2202.05262
      code: https://github.com/kmeng01/rome   # optional
@@ -31,7 +32,8 @@ Out of scope: ordinary fine-tuning, PEFT methods that are only a training recipe
      note: "Locates factual recall in mid-layer MLPs and rewrites a fact with a closed-form rank-one weight update (ROME)."
    ```
 
-4. Regenerate the README and run the check:
+4. Optionally fill in the date and citation count automatically with `python scripts/refresh_metadata.py`.
+5. Regenerate the README and run the check:
 
    ```bash
    python scripts/build_readme.py
@@ -41,7 +43,7 @@ Out of scope: ordinary fine-tuning, PEFT methods that are only a training recipe
    python scripts/build_readme.py --check
    ```
 
-5. Commit `papers.yaml` and `README.md` together and open a pull request.
+6. Commit `papers.yaml` and `README.md` together and open a pull request.
 
 ## Field rules
 
@@ -50,11 +52,13 @@ Out of scope: ordinary fine-tuning, PEFT methods that are only a training recipe
 | `title` | yes | Exactly as on the arXiv or publisher page. |
 | `authors` | yes | `First Author et al.` for three or more authors; both names for two. |
 | `year` | yes | Year of the first public version (arXiv v1). |
+| `date` | yes | Date of the first public version, quoted: `'YYYY-MM-DD'` (arXiv v1 date; `scripts/refresh_metadata.py` fills it in for arXiv papers). |
 | `url` | yes | `https://arxiv.org/abs/XXXX.XXXXX` (no version suffix, no PDF link), or the publisher page. |
 | `category` | yes | One of the `id`s under `categories:` in `papers.yaml`. |
 | `note` | yes | One sentence in your own words on why the paper matters for weight-space programming, ending with a period, at most 300 characters. Do not copy the abstract. |
 | `venue` | no | Short venue and year, such as `ICLR 2024`, `EMNLP 2023` or `TMLR`. Omit for preprints. |
 | `code` | no | Official code repository URL. |
+| `citations` | no | Semantic Scholar citation count. Don't edit it by hand: `scripts/refresh_metadata.py` sets it, and the daily maintenance run refreshes it. |
 
 Entries are sorted automatically (newest first), so the position of an entry in `papers.yaml` does not matter. Never add a paper you have not checked on its arXiv or publisher page.
 
