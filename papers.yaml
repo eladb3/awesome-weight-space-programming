@@ -1,0 +1,41 @@
+# Source of truth for README.md. Edit this file, then run: python scripts/build_readme.py
+# See CONTRIBUTING.md for the field rules. Entry order here does not matter.
+
+categories:
+  - id: model-editing
+    title: Model and Knowledge Editing
+    description: Methods that change specific facts or behaviours by computing or learning a targeted weight update.
+  - id: editing-analysis
+    title: Analyses of Weight Edits
+    description: Work on what weight edits look like and how they fail, including rank-one structure, locality, side effects, and collapse under many edits.
+  - id: task-arithmetic-merging
+    title: Task Vectors, Task Arithmetic and Model Merging
+    description: Treating fine-tuning deltas as vectors to add, negate, and combine, and merging trained models directly in weight space.
+  - id: weight-space-learning
+    title: Weight-Space Learning
+    description: Networks that take other networks' weights as input, including equivariant metanetworks, neural functionals, and weight embeddings.
+  - id: weight-generation
+    title: Weight Generation
+    description: Hypernetworks and generative models (diffusion, flow matching, autoregressive) that output network weights, including prompt-to-weights and text-to-LoRA.
+  - id: weight-interpretability
+    title: Weight-Based Interpretability
+    description: Reading what a network computes directly from its parameters, including parameter decomposition and circuit-level weight edits.
+  - id: agent-driven-editing
+    title: Agent- and LLM-Driven Weight Editing
+    description: A model reading, generating, or modifying another model's (or its own) weights, including LLMs that write weight updates and agents that edit models.
+  - id: benchmarks-datasets
+    title: Benchmarks, Datasets and Model Zoos
+    description: Evaluation suites for weight edits and merges, and collections of trained networks for weight-space research.
+  - id: surveys
+    title: Surveys
+    description: Overviews of one or more WSP areas.
+
+papers:
+  - title: "Locating and Editing Factual Associations in GPT"
+    authors: "Kevin Meng et al."
+    year: 2022
+    venue: "NeurIPS 2022"
+    url: https://arxiv.org/abs/2202.05262
+    code: https://github.com/kmeng01/rome
+    category: model-editing
+    note: "Locates factual recall in mid-layer MLPs and rewrites a fact with a closed-form rank-one weight update (ROME)."
