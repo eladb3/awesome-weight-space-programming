@@ -6,6 +6,8 @@
 
 **Weight-space programming (WSP)** treats the weights of a trained network as an object you program: something you directly *read* (to find out what the network computes), *edit* (to change specific behaviour or knowledge), and *write* (to create or combine networks), instead of something you reach only indirectly by running gradient descent on data.
 
+The term comes from Takehi, Teoh, Zhang and Khattab, ["Sparks of Weight-Space Programming"](https://www.lesswrong.com/llmRuns/zSHqRnRtDKnuAGNpW) (MIT CSAIL, November 2026). They use it for a general-purpose LLM reading and rewriting another network's weights from a natural-language goal. This list uses it more broadly, as an umbrella for every line of work that treats weights as a program to read, edit, or write. The LLM-driven sense has its own section below.
+
 In scope:
 
 - **Model and knowledge editing**: closed-form or learned weight updates that change specific facts or behaviours (ROME, MEMIT, MEND and successors), and analyses of what those edits look like in weight space.
