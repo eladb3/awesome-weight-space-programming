@@ -2,46 +2,142 @@
 
 [![Check](https://github.com/eladb3/awesome-weight-space-programming/actions/workflows/check.yml/badge.svg)](https://github.com/eladb3/awesome-weight-space-programming/actions/workflows/check.yml)
 
-> A curated list of papers on reading, editing, and writing the weights of trained neural networks directly.
+> A curated list of papers on reading, editing, and writing the weights of neural networks directly.
 
-**Weight-space programming (WSP)** treats the weights of a trained network as an object you program: something you directly *read* (to find out what the network computes), *edit* (to change specific behaviour or knowledge), and *write* (to create or combine networks), instead of something you reach only indirectly by running gradient descent on data.
+**Weight-space programming (WSP)** is the practice of having a language model or agent work on a neural network's weights directly: *read* them to say what the network does, *edit* them to fix a failure or change a behaviour, or *write* them from scratch from a specification. It is guided by a goal stated in natural language instead of by gradient descent on data. The term was introduced by Takehi, Teoh, Zhang and Khattab in ["Sparks of Weight-Space Programming"](https://www.lesswrong.com/llmRuns/zSHqRnRtDKnuAGNpW) (MIT CSAIL, November 2026). Within weeks it was followed by replications, critiques, benchmarks, security studies, and applications from robotics to medicine.
 
-The term comes from Takehi, Teoh, Zhang and Khattab, ["Sparks of Weight-Space Programming"](https://www.lesswrong.com/llmRuns/zSHqRnRtDKnuAGNpW) (MIT CSAIL, November 2026). They use it for a general-purpose LLM reading and rewriting another network's weights from a natural-language goal. This list uses it more broadly, as an umbrella for every line of work that treats weights as a program to read, edit, or write. The LLM-driven sense has its own section below.
+The list has three parts:
 
-In scope:
-
-- **Model and knowledge editing**: closed-form or learned weight updates that change specific facts or behaviours (ROME, MEMIT, MEND and successors), and analyses of what those edits look like in weight space.
-- **Task vectors and model merging**: arithmetic on fine-tuning deltas, and combining trained models in weight space.
-- **Weight-space learning**: networks that take other networks' weights as input.
-- **Weight generation**: hypernetworks and generative models that output weights, including prompt-to-weights and text-to-LoRA methods.
-- **Weight-based interpretability**: reading function from parameters, parameter decomposition, and circuit-level weight edits.
-- **Agent- and LLM-driven weight editing**: one model reading or modifying another model's (or its own) weights.
-- **Benchmarks, datasets, model zoos, and surveys** for the above.
+- **[Weight-Space Programming](#weight-space-programming)**: the papers on LLMs and agents reading, editing, and writing weights.
+- **[Foundations and Related Areas](#foundations-and-related-areas)**: older lines of work that already treat weights as something to compute, compose, learn from, or read. These are model and knowledge editing (ROME, MEMIT, MEND and successors), task arithmetic and model merging, weight-space learning, weight generation (hypernetworks, diffusion over weights, text-to-LoRA), and weight-based interpretability.
+- **[Resources](#resources)**: benchmarks, datasets, tools, model zoos, and surveys.
 
 Out of scope: ordinary fine-tuning, parameter-efficient fine-tuning that is only a training recipe, activation steering with no weight change, and pruning or quantization unless the paper is about weight-space structure.
 
-Entries are sorted newest first within each section. Every entry has been checked against its arXiv or publisher page. Years are the year of the first public version, usually arXiv v1.
+Entries are sorted newest first within each section. Every entry has been checked against its arXiv or publisher page.
 
 ## Contents
 
-- [Model and Knowledge Editing](#model-and-knowledge-editing) (39)
-- [Analyses of Weight Edits](#analyses-of-weight-edits) (22)
-- [Task Vectors, Task Arithmetic and Model Merging](#task-vectors-task-arithmetic-and-model-merging) (36)
-- [Weight-Space Learning](#weight-space-learning) (36)
-- [Weight Generation](#weight-generation) (28)
-- [Weight-Based Interpretability](#weight-based-interpretability) (25)
-- [Agent- and LLM-Driven Weight Editing](#agent--and-llm-driven-weight-editing) (30)
-- [Benchmarks, Datasets, Tools and Model Zoos](#benchmarks-datasets-tools-and-model-zoos) (21)
-- [Surveys](#surveys) (8)
+- [Weight-Space Programming](#weight-space-programming) (45)
+  - [Reading Weights](#reading-weights) (4)
+  - [Editing and Repairing Models](#editing-and-repairing-models) (15)
+  - [Writing Weights from Scratch](#writing-weights-from-scratch) (14)
+  - [Self-Editing Models](#self-editing-models) (3)
+  - [Replications, Critiques and Alternatives](#replications-critiques-and-alternatives) (6)
+  - [Security](#security) (3)
+- [Foundations and Related Areas](#foundations-and-related-areas) (185)
+  - [Model and Knowledge Editing](#model-and-knowledge-editing) (38)
+  - [Analyses of Weight Edits](#analyses-of-weight-edits) (22)
+  - [Task Vectors, Task Arithmetic and Model Merging](#task-vectors-task-arithmetic-and-model-merging) (36)
+  - [Weight-Space Learning](#weight-space-learning) (36)
+  - [Weight Generation](#weight-generation) (28)
+  - [Weight-Based Interpretability](#weight-based-interpretability) (25)
+- [Resources](#resources) (29)
+  - [Benchmarks, Datasets, Tools and Model Zoos](#benchmarks-datasets-tools-and-model-zoos) (21)
+  - [Surveys and Position Papers](#surveys-and-position-papers) (8)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Model and Knowledge Editing
+## Weight-Space Programming
+
+Language models and agents that read, edit, or write the weights of other networks (or their own) directly, guided by a goal in natural language rather than by gradient descent.
+
+### Reading Weights
+
+Models that inspect another network's weights or weight diffs and say what the network does.
+
+- [From LoRA to Language: Recovering Skill Documents from Adapters](https://arxiv.org/abs/2611.09454) - *Saranya Dintakurthy Swadha et al. (2026), arXiv preprint.* Tries to recover the skill document that a LoRA adapter was compiled from, comparing weights-only readers with agents that run or diff the adapter.
+- [Weight-space programming for auditing clinical decision networks](https://arxiv.org/abs/2611.05341) - *Humza Nusrat and Omar Nusrat (2026), arXiv preprint.* An LLM audits clinical decision networks from their weights alone and repairs a hidden shortcut by changing a handful of parameters.
+- [Weight Oracles: Reading Neural Network Weights with Language Models](https://arxiv.org/abs/2610.07334) - *Krishna Kabra et al. (2026), NeurIPS 2026 Workshop.* Fine-tunes LLMs to read another network's raw weights as tokens and answer diagnostic questions about it, such as whether it contains a backdoor.
+- [Learning to Interpret Weight Differences in Language Models](https://arxiv.org/abs/2510.05092) - *Avichal Goel et al. (2025), arXiv preprint.* Trains a model to describe its own fine-tuning weight diff in natural language, exposing hidden behaviours and new knowledge from weights alone.
+
+**[⬆ back to top](#contents)**
+
+### Editing and Repairing Models
+
+An LLM or agent changes an existing network's weights to fix a failure or change a behaviour.
+
+- [Writing Weights or Training Them? Spatial Reasoning through Weight-Space Programming and Low-Rank Adaptation](https://arxiv.org/abs/2611.27089) - *Yalin Yang et al. (2026), arXiv preprint.* Compares an LLM-written weight patch with LoRA fine-tuning on spatial-reasoning tasks for a small LM.
+- [Weight-space programming and mechanistic interpretability for model editing in particle physics](https://arxiv.org/abs/2611.27079) - *Raphaël Bonnet-Guerrini et al. (2026), arXiv preprint.* Combines LLM weight-space programming with SAE-guided analysis to remove an infrared-safety violation from a particle-physics foundation model by direct weight edits.
+- [Weight-Space Programming Writes In-Context Learning and Matches Fine-Tuning in Language Models](https://arxiv.org/abs/2611.26841) - *Konstantinos Skianis and Aristidis Likas (2026), arXiv preprint.* Frontier editors turn in-context examples into MLP weight edits so a weaker LM performs the task with an empty prompt, matching ICL and LoRA fine-tuning.
+- [Training Vision Models for LLM-Driven Weight-Space Programming](https://arxiv.org/abs/2611.26408) - *Timo Ropinski and Sebastian Kranz (2026), arXiv preprint.* Benchmarks LLM weight editing of CNNs and ViTs at scale and proposes training networks to be easier for LLMs to edit.
+- [Keel: A Frontier Model Teaches a Vision-Language Model by Rewriting Its Weights](https://arxiv.org/abs/2611.25257) - *Jiajun Fan et al. (2026), arXiv preprint.* A frontier model diagnoses why a small VLM falls into reasoning loops and fixes it by rewriting the VLM's weights, given only the symptom.
+- [Can Weight-Space Programming Alter Learned Ethical Priorities?](https://arxiv.org/abs/2611.24330) - *Kai Yi Ji (2026), arXiv preprint.* Edits the fitted choice weights of a concept-supervised text model to change how it trades off keeping a pledge against helping more people.
+- [Weight Space Programming for Vision Language Model Repair](https://arxiv.org/abs/2611.23615) - *Avinash Goutham Aluguvelly (2026), arXiv preprint.* Plants faults in VLM weights and checks each repair a coding agent makes, revealing which cues gradient-free weight repairs rely on.
+- [What Does Weight-Space Programming Add to Diffusion Editing? Program Construction versus Score-Guided Refinement](https://arxiv.org/abs/2611.22228) - *Zitian Gao et al. (2026), arXiv preprint.* Compares LM-written weight-update programs for diffusion concept editing against published editors and finds a mostly negative result.
+- [Can AI Mature a Model's Geometry? Training-Free Weight Baking in LLMs](https://arxiv.org/abs/2611.21310) - *Amin Golnari and Saeid Sanei (2026), arXiv preprint.* An analyst model reads topological summaries of a frozen LM's layers and proposes a transformation that is written into its FFN weights in closed form.
+- [Weight-Space Programming Changes How an LLM Uses Python for Computational Biology](https://arxiv.org/abs/2611.20566) - *Makoto Sato (2026), arXiv preprint.* A frontier LLM edits a small LM's weights and changes how it uses Python on computational-biology problems, nearly doubling strictly correct answers.
+- [Weights & Caches: LLMs Can Program Tabular Foundation Models](https://arxiv.org/abs/2611.20174) - *Shi Bin Hoo et al. (2026), arXiv preprint.* Shows that LLMs can program statistical computations into a tabular foundation model's weights directly.
+- [Mixed Signals: Weight-Space Programming for EEG and ECG](https://arxiv.org/abs/2611.13758) - *Dara Varam et al. (2026), arXiv preprint.* Applies LLM weight reading and editing to EEG and ECG models, repairing planted faults by reasoning rather than gradient descent.
+- [Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations](https://arxiv.org/abs/2611.09382) - *Junru Hu et al. (2026), arXiv preprint.* Systematic study of agent weight-editing trajectories on small LMs: small localized edits can give large gains, but generalization across tasks is inconsistent.
+- [Can LLMs Debug Robots by Editing Their Weights?](https://arxiv.org/abs/2611.09376) - *Jusheng Zhang et al. (2026), arXiv preprint.* An LLM repairs a robot foundation policy's instruction grounding by editing a few dozen embedding rows with simulator feedback and no gradient updates.
+- [WeightLoop: Weight-Space Programming with Experimental Feedback](https://arxiv.org/abs/2611.07319) - *Mengran Li et al. (2026), arXiv preprint.* Turns experimental feedback into persistent weight corrections of scientific predictors through LLM-written update programs.
+
+**[⬆ back to top](#contents)**
+
+### Writing Weights from Scratch
+
+An LLM writes all the weights of a network, or installs a new capability, from a specification instead of training.
+
+- [WeightCode: Installing New Capabilities into Neural Networks via Weight-Space Programming](https://arxiv.org/abs/2611.25476) - *Bo Li et al. (2026), arXiv preprint.* A frozen LM writes executable weight programs that install new capabilities into trained vision and navigation networks, outperforming fine-tuning baselines.
+- [Weight-Space Programming Doesn't Need Transformers](https://arxiv.org/abs/2611.22055) - *Hyunjong Ok and Jaeho Lee (2026), arXiv preprint.* Lets LLMs that write weights by hand also choose the architecture, and finds they need not keep the transformer.
+- [Weight-Space Programming for Materials Science](https://arxiv.org/abs/2611.22013) - *Sk Md Ahnaf Akif Alvi and Raymundo Arróyave (2026), arXiv preprint.* An LLM writes the weights of a small candidate-ranking network from a task description, for materials discovery with almost no labels.
+- [Weight-space programming for tractor guidance controller: large language models natively write neural network weights that steer a real tractor](https://arxiv.org/abs/2611.21958) - *Timo Oksanen (2026), arXiv preprint.* LLMs write and adapt the weights of a 253-parameter steering network that is deployed on a real tractor, with no optimizer.
+- [Zero-Shot Weight-Space Programming for Prediction and Classification of Target Variables in Structured Datasets](https://arxiv.org/abs/2611.19292) - *Eduardo C. Garrido-Merchán (2026), arXiv preprint.* Has an LLM write every weight of a feed-forward network from a small dataset shown in full, so the LLM must do the statistical inference itself.
+- [Interpretable weight-space programming builds transparent transformers and brain encoding models](https://arxiv.org/abs/2611.18114) - *Yash Mehta et al. (2026), arXiv preprint.* An LLM agent programs the weights of transparent transformers and brain-encoding models so their computations stay human-readable.
+- [Compiling Known Rules into Compact Neural Agents: Weight-Space Programming on Unseen Games](https://arxiv.org/abs/2611.16981) - *Jens Lehmann (2026), arXiv preprint.* LLM writers compile known game rules directly into the weights of compact recurrent agents that generalize to unseen levels.
+- [Physics2Weight: Direct Neural Network Architecture and Weight Generation from Physical Laws Using Large Language Models](https://arxiv.org/abs/2611.12954) - *Shogo Sato et al. (2026), arXiv preprint.* Has an LLM generate both the architecture and the weights of networks that solve PDEs directly from the governing physical laws (Physics2Weight).
+- [Weight-Space Programming for Medical Imaging: Do We Still Need Training Data?](https://arxiv.org/abs/2611.12066) - *Maximilian Lindholz et al. (2026), arXiv preprint.* Has LLMs write the weights of medical image classifiers from medical knowledge alone, asking whether training data is needed at all.
+- [Weight-Space Programming of Policies and Their Verification via Model Checking](https://arxiv.org/abs/2611.11604) - *Dennis Gross (2026), arXiv preprint.* Combines LLM-written policy weights with probabilistic model checking so that a written policy can be verified against a formal requirement.
+- [Weight-Space Programming of Variational Quantum Circuits: Large Language Models Write Quantum Circuit Parameters Without an Optimizer](https://arxiv.org/abs/2611.11537) - *Debarshi Kundu et al. (2026), arXiv preprint.* Extends weight writing to quantum computing: an LLM sets variational quantum circuit angles directly, with no optimizer.
+- [Can a Language Model Write the Weights? An Empirical Study of LLM-Written Scoring Networks for Column Generation and MILP Branching, with a Bus-Driver Scheduling Application](https://arxiv.org/abs/2611.09559) - *Renan Butkeraites (2026), arXiv preprint.* Has an LLM write small scoring networks for column generation and MILP branching in exact optimization solvers.
+- [Zero-Shot Weight-Space Programming Across a Difficulty-Graded Ladder of Two-Player Games](https://arxiv.org/abs/2611.09271) - *Eduardo C. Garrido-Merchán (2026), arXiv preprint.* Tests how far zero-shot hand-writing of network weights goes across games of increasing difficulty, from Nim to a chess endgame.
+- [NeuronGen: Neural Network Parameter Generation via Large Language Models](https://arxiv.org/abs/2505.12470) - *Jiaqi Wang et al. (2025), arXiv preprint.* Has an LLM directly emit the parameters of small networks from task, data, and architecture descriptions, an early instance of LLM-written weights.
+
+**[⬆ back to top](#contents)**
+
+### Self-Editing Models
+
+Models that produce updates to their own weights.
+
+- [Language Models Can Rewrite Their Own Weights](https://arxiv.org/abs/2611.21885) - *Jiajun Fan et al. (2026), arXiv preprint.* A language model improves itself by reasoning about and rewriting its own weights, with no gradients or training run.
+- [Search over Self-Edit Strategies for LLM Adaptation](https://arxiv.org/abs/2601.14532) - *Alistair Cheong et al. (2026), arXiv preprint.* Lets an LLM choose its own self-edit strategy and hyperparameters, deciding from task feedback how its weights should be updated.
+- [Self-Adapting Language Models](https://arxiv.org/abs/2506.10943) - *Adam Zweiger et al. (2025), NeurIPS 2025.* An LLM generates its own self-edits (fine-tuning data and update directives) that become persistent weight updates, trained with RL (SEAL).
+
+**[⬆ back to top](#contents)**
+
+### Replications, Critiques and Alternatives
+
+Independent replications, tests of what the reading and writing really rely on, and non-LLM alternatives to the same edits.
+
+- [Replicating and Extending Weight-Space Programming: Frontier LLMs Compile Programs into Weights and Read Input Layers](https://arxiv.org/abs/2611.21449) - *Roksana Goworek et al. (2026), arXiv preprint.* Independent replication of LLM weight-space programming; finds that written networks behave like compiled programs and that weight reading relies mostly on the input layer.
+- [Just sort it! A note on the LP behind rank-one anti-loop edits](https://arxiv.org/abs/2611.21432) - *Matteo Fischetti (2026), arXiv preprint.* Shows that the sparse linear program behind the agent's rank-one anti-loop edit can be replaced by a simple sort, simplifying a celebrated WSP fix.
+- [Same Fix, Different Weights: Replicating Weight-Space Programming with Claude](https://arxiv.org/abs/2611.20953) - *Subham Kundu (2026), arXiv preprint.* Pre-registered replication of weight reading, repair, and writing with a different frontier model, with untrained-network and permutation controls.
+- [Tree-Ising: Repairing Language Models with Bit-Level Ising Edits](https://arxiv.org/abs/2611.14210) - *Hadi Salloum and Ammar Ali (2026), arXiv preprint.* Replaces an LLM agent's weight repair with a sparse discrete optimization over the model's own bits, a solver-based contrast to agent-driven editing.
+- [Can an LLM Actually Reason and Program about Neural Network's Weights or is it just memorization on steroids? Exploring "Weight-Space Programming"](https://arxiv.org/abs/2611.08070) - *Nazmus Sakib Ahmed (2026), arXiv preprint.* Probes whether an LLM reading raw CNN weights is reasoning about the weights or relying on local arithmetic plus memorized dataset priors.
+- [Computation, not weight access: large language models as auditors of clinical prediction networks](https://arxiv.org/abs/2611.07847) - *Zhiyu Liu and Xinyu Yang (2026), arXiv preprint.* Separates an LLM reading weights in its prompt from an LLM running code on them, and shows that reliable auditing of clinical networks comes from computation, not weight access.
+
+**[⬆ back to top](#contents)**
+
+### Security
+
+Using weight-space programming to implant backdoors, and the risks this creates.
+
+- [Autonomous Parameter Surgery: How LLMs Implant Selective Backdoors into Language Models](https://arxiv.org/abs/2611.27920) - *Xuyang Liu et al. (2026), arXiv preprint.* Shows that an LLM can turn a natural-language backdoor specification into persistent rank-one or single-neuron weight edits on another LM, a security risk of weight-space programming.
+- [TrojanMaxxing: One-shotting VLM Backdoors with Weight-Space Programming](https://arxiv.org/abs/2611.27425) - *Ahaan Dabholkar et al. (2026), arXiv preprint.* LLM agents inspect a VLM's weights, edit them, and co-design a visual trigger to implant a backdoor in one shot with no training.
+- [Can LLMs Write Backdoors? An Empirical Security Study of Weight-Space Programming](https://arxiv.org/abs/2611.17395) - *Zhaojia Wang et al. (2026), arXiv preprint.* Security study of several LLMs acting as weight editors that inject backdoors into MLPs, ResNets, and a small LM with few parameter changes.
+
+**[⬆ back to top](#contents)**
+
+## Foundations and Related Areas
+
+Older lines of work that treat weights as objects to compute, compose, learn from, or read, and that weight-space programming builds on.
+
+### Model and Knowledge Editing
 
 Methods that change specific facts or behaviours by computing or learning a targeted weight update.
 
 - [MuEdit: An efficient multi-task editing method towards inter-domain knowledge conflicts](https://arxiv.org/abs/2611.14910) - *Songshi Liang et al. (2026), NeurIPS 2026.* Explains multi-domain edit collapse as a shrinking shared null space and expands it with conflict-aware ordering and low-rank updates (MuEdit).
-- [Tree-Ising: Repairing Language Models with Bit-Level Ising Edits](https://arxiv.org/abs/2611.14210) - *Hadi Salloum and Ammar Ali (2026), arXiv preprint.* Replaces an LLM agent's weight repair with a sparse discrete optimization over the model's own bits, a solver-based contrast to agent-driven editing.
 - [Capacity Allocation at the Source: Sparse Target Optimization for LLM Knowledge Editing](https://arxiv.org/abs/2611.12995) - *Dongyao Chen et al. (2026), NeurIPS 2026.* Traces cross-edit interference in batched editing to overlapping target vectors and reduces it with sparse targets.
 - [AnyEdit++: Adaptive Long-Form Knowledge Editing via Bayesian Surprise](https://arxiv.org/abs/2606.01053) - *Bowen Tian et al. (2026), ICML 2026.* Long-form knowledge editing that segments targets by surprisal and uses orthogonal anchor keys to limit interference between weight updates (AnyEdit++).
 - [From Backward Spreading to Forward Replay: Revisiting Target Construction in LLM Parameter Editing](https://arxiv.org/abs/2605.00358) - *Wei Liu et al. (2026), ICML 2026.* Revisits how MEMIT spreads residual targets over layers and computes per-layer targets by forward replay instead.
@@ -82,7 +178,7 @@ Methods that change specific facts or behaviours by computing or learning a targ
 
 **[⬆ back to top](#contents)**
 
-## Analyses of Weight Edits
+### Analyses of Weight Edits
 
 Work on what weight edits look like and how they fail, including rank-one structure, locality, side effects, and collapse under many edits.
 
@@ -111,7 +207,7 @@ Work on what weight edits look like and how they fail, including rank-one struct
 
 **[⬆ back to top](#contents)**
 
-## Task Vectors, Task Arithmetic and Model Merging
+### Task Vectors, Task Arithmetic and Model Merging
 
 Treating fine-tuning deltas as vectors to add, negate, and combine, and merging trained models directly in weight space.
 
@@ -154,7 +250,7 @@ Treating fine-tuning deltas as vectors to add, negate, and combine, and merging 
 
 **[⬆ back to top](#contents)**
 
-## Weight-Space Learning
+### Weight-Space Learning
 
 Networks that take other networks' weights as input, including equivariant metanetworks, neural functionals, and weight embeddings.
 
@@ -197,7 +293,7 @@ Networks that take other networks' weights as input, including equivariant metan
 
 **[⬆ back to top](#contents)**
 
-## Weight Generation
+### Weight Generation
 
 Hypernetworks and generative models (diffusion, flow matching, autoregressive) that output network weights, including prompt-to-weights and text-to-LoRA.
 
@@ -232,7 +328,7 @@ Hypernetworks and generative models (diffusion, flow matching, autoregressive) t
 
 **[⬆ back to top](#contents)**
 
-## Weight-Based Interpretability
+### Weight-Based Interpretability
 
 Reading what a network computes directly from its parameters, including parameter decomposition and circuit-level weight edits.
 
@@ -264,46 +360,13 @@ Reading what a network computes directly from its parameters, including paramete
 
 **[⬆ back to top](#contents)**
 
-## Agent- and LLM-Driven Weight Editing
+## Resources
 
-A model reading, generating, or modifying another model's (or its own) weights, including LLMs that write weight updates and agents that edit models.
+Benchmarks, datasets, tools, model zoos, and surveys.
 
-- [Autonomous Parameter Surgery: How LLMs Implant Selective Backdoors into Language Models](https://arxiv.org/abs/2611.27920) - *Xuyang Liu et al. (2026), arXiv preprint.* Shows that an LLM can turn a natural-language backdoor specification into persistent rank-one or single-neuron weight edits on another LM, a security risk of weight-space programming.
-- [TrojanMaxxing: One-shotting VLM Backdoors with Weight-Space Programming](https://arxiv.org/abs/2611.27425) - *Ahaan Dabholkar et al. (2026), arXiv preprint.* LLM agents inspect a VLM's weights, edit them, and co-design a visual trigger to implant a backdoor in one shot with no training.
-- [Weight-space programming and mechanistic interpretability for model editing in particle physics](https://arxiv.org/abs/2611.27079) - *Raphaël Bonnet-Guerrini et al. (2026), arXiv preprint.* Combines LLM weight-space programming with SAE-guided analysis to remove an infrared-safety violation from a particle-physics foundation model by direct weight edits.
-- [Weight-Space Programming Writes In-Context Learning and Matches Fine-Tuning in Language Models](https://arxiv.org/abs/2611.26841) - *Konstantinos Skianis and Aristidis Likas (2026), arXiv preprint.* Frontier editors turn in-context examples into MLP weight edits so a weaker LM performs the task with an empty prompt, matching ICL and LoRA fine-tuning.
-- [Training Vision Models for LLM-Driven Weight-Space Programming](https://arxiv.org/abs/2611.26408) - *Timo Ropinski and Sebastian Kranz (2026), arXiv preprint.* Benchmarks LLM weight editing of CNNs and ViTs at scale and proposes training networks to be easier for LLMs to edit.
-- [WeightCode: Installing New Capabilities into Neural Networks via Weight-Space Programming](https://arxiv.org/abs/2611.25476) - *Bo Li et al. (2026), arXiv preprint.* A frozen LM writes executable weight programs that install new capabilities into trained vision and navigation networks, outperforming fine-tuning baselines.
-- [Keel: A Frontier Model Teaches a Vision-Language Model by Rewriting Its Weights](https://arxiv.org/abs/2611.25257) - *Jiajun Fan et al. (2026), arXiv preprint.* A frontier model diagnoses why a small VLM falls into reasoning loops and fixes it by rewriting the VLM's weights, given only the symptom.
-- [Weight Space Programming for Vision Language Model Repair](https://arxiv.org/abs/2611.23615) - *Avinash Goutham Aluguvelly (2026), arXiv preprint.* Plants faults in VLM weights and checks each repair a coding agent makes, revealing which cues gradient-free weight repairs rely on.
-- [What Does Weight-Space Programming Add to Diffusion Editing? Program Construction versus Score-Guided Refinement](https://arxiv.org/abs/2611.22228) - *Zitian Gao et al. (2026), arXiv preprint.* Compares LM-written weight-update programs for diffusion concept editing against published editors and finds a mostly negative result.
-- [Weight-space programming for tractor guidance controller: large language models natively write neural network weights that steer a real tractor](https://arxiv.org/abs/2611.21958) - *Timo Oksanen (2026), arXiv preprint.* LLMs write and adapt the weights of a 253-parameter steering network that is deployed on a real tractor, with no optimizer.
-- [Language Models Can Rewrite Their Own Weights](https://arxiv.org/abs/2611.21885) - *Jiajun Fan et al. (2026), arXiv preprint.* A language model improves itself by reasoning about and rewriting its own weights, with no gradients or training run.
-- [Replicating and Extending Weight-Space Programming: Frontier LLMs Compile Programs into Weights and Read Input Layers](https://arxiv.org/abs/2611.21449) - *Roksana Goworek et al. (2026), arXiv preprint.* Independent replication of LLM weight-space programming; finds that written networks behave like compiled programs and that weight reading relies mostly on the input layer.
-- [Can AI Mature a Model's Geometry? Training-Free Weight Baking in LLMs](https://arxiv.org/abs/2611.21310) - *Amin Golnari and Saeid Sanei (2026), arXiv preprint.* An analyst model reads topological summaries of a frozen LM's layers and proposes a transformation that is written into its FFN weights in closed form.
-- [Same Fix, Different Weights: Replicating Weight-Space Programming with Claude](https://arxiv.org/abs/2611.20953) - *Subham Kundu (2026), arXiv preprint.* Pre-registered replication of weight reading, repair, and writing with a different frontier model, with untrained-network and permutation controls.
-- [Weights & Caches: LLMs Can Program Tabular Foundation Models](https://arxiv.org/abs/2611.20174) - *Shi Bin Hoo et al. (2026), arXiv preprint.* Shows that LLMs can program statistical computations into a tabular foundation model's weights directly.
-- [Interpretable weight-space programming builds transparent transformers and brain encoding models](https://arxiv.org/abs/2611.18114) - *Yash Mehta et al. (2026), arXiv preprint.* An LLM agent programs the weights of transparent transformers and brain-encoding models so their computations stay human-readable.
-- [Can LLMs Write Backdoors? An Empirical Security Study of Weight-Space Programming](https://arxiv.org/abs/2611.17395) - *Zhaojia Wang et al. (2026), arXiv preprint.* Security study of several LLMs acting as weight editors that inject backdoors into MLPs, ResNets, and a small LM with few parameter changes.
-- [Compiling Known Rules into Compact Neural Agents: Weight-Space Programming on Unseen Games](https://arxiv.org/abs/2611.16981) - *Jens Lehmann (2026), arXiv preprint.* LLM writers compile known game rules directly into the weights of compact recurrent agents that generalize to unseen levels.
-- [From LoRA to Language: Recovering Skill Documents from Adapters](https://arxiv.org/abs/2611.09454) - *Saranya Dintakurthy Swadha et al. (2026), arXiv preprint.* Tries to recover the skill document that a LoRA adapter was compiled from, comparing weights-only readers with agents that run or diff the adapter.
-- [Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations](https://arxiv.org/abs/2611.09382) - *Junru Hu et al. (2026), arXiv preprint.* Systematic study of agent weight-editing trajectories on small LMs: small localized edits can give large gains, but generalization across tasks is inconsistent.
-- [Can LLMs Debug Robots by Editing Their Weights?](https://arxiv.org/abs/2611.09376) - *Jusheng Zhang et al. (2026), arXiv preprint.* An LLM repairs a robot foundation policy's instruction grounding by editing a few dozen embedding rows with simulator feedback and no gradient updates.
-- [Can an LLM Actually Reason and Program about Neural Network's Weights or is it just memorization on steroids? Exploring "Weight-Space Programming"](https://arxiv.org/abs/2611.08070) - *Nazmus Sakib Ahmed (2026), arXiv preprint.* Probes whether an LLM reading raw CNN weights is reasoning about the weights or relying on local arithmetic plus memorized dataset priors.
-- [Computation, not weight access: large language models as auditors of clinical prediction networks](https://arxiv.org/abs/2611.07847) - *Zhiyu Liu and Xinyu Yang (2026), arXiv preprint.* Separates an LLM reading weights in its prompt from an LLM running code on them, and shows that reliable auditing of clinical networks comes from computation, not weight access.
-- [WeightLoop: Weight-Space Programming with Experimental Feedback](https://arxiv.org/abs/2611.07319) - *Mengran Li et al. (2026), arXiv preprint.* Turns experimental feedback into persistent weight corrections of scientific predictors through LLM-written update programs.
-- [Weight-space programming for auditing clinical decision networks](https://arxiv.org/abs/2611.05341) - *Humza Nusrat and Omar Nusrat (2026), arXiv preprint.* An LLM audits clinical decision networks from their weights alone and repairs a hidden shortcut by changing a handful of parameters.
-- [Weight Oracles: Reading Neural Network Weights with Language Models](https://arxiv.org/abs/2610.07334) - *Krishna Kabra et al. (2026), NeurIPS 2026 Workshop.* Fine-tunes LLMs to read another network's raw weights as tokens and answer diagnostic questions about it, such as whether it contains a backdoor.
-- [Search over Self-Edit Strategies for LLM Adaptation](https://arxiv.org/abs/2601.14532) - *Alistair Cheong et al. (2026), arXiv preprint.* Lets an LLM choose its own self-edit strategy and hyperparameters, deciding from task feedback how its weights should be updated.
-- [Learning to Interpret Weight Differences in Language Models](https://arxiv.org/abs/2510.05092) - *Avichal Goel et al. (2025), arXiv preprint.* Trains a model to describe its own fine-tuning weight diff in natural language, exposing hidden behaviours and new knowledge from weights alone.
-- [Self-Adapting Language Models](https://arxiv.org/abs/2506.10943) - *Adam Zweiger et al. (2025), NeurIPS 2025.* An LLM generates its own self-edits (fine-tuning data and update directives) that become persistent weight updates, trained with RL (SEAL).
-- [NeuronGen: Neural Network Parameter Generation via Large Language Models](https://arxiv.org/abs/2505.12470) - *Jiaqi Wang et al. (2025), arXiv preprint.* Has an LLM directly emit the parameters of small networks from task, data, and architecture descriptions, an early instance of LLM-written weights.
+### Benchmarks, Datasets, Tools and Model Zoos
 
-**[⬆ back to top](#contents)**
-
-## Benchmarks, Datasets, Tools and Model Zoos
-
-Evaluation suites for weight edits and merges, software for manipulating weights, and collections of trained networks for weight-space research.
+Evaluation suites for weight-space programming, weight edits and merges, software for manipulating weights, and collections of trained networks for weight-space research.
 
 - [WeightBench: Evaluating Language Models as Weight-Space Programmers](https://arxiv.org/abs/2611.18553) - *Aayush Marasini et al. (2026), arXiv preprint.* A benchmark of reading, repairing, and writing tasks that scores LLMs as weight-space programmers, from tiny policies up to 7B language models, including edits that should be refused as impossible.
 - [IWIBench: Evaluating Gradient-Free Model Driven Intra-weight Injection](https://arxiv.org/abs/2611.08647) - *Chris von Csefalvay et al. (2026), arXiv preprint.* Benchmarks an editor LLM that changes a target language model's behaviour only through read-weight and write-weight tools, with no gradients.
@@ -329,9 +392,9 @@ Evaluation suites for weight edits and merges, software for manipulating weights
 
 **[⬆ back to top](#contents)**
 
-## Surveys
+### Surveys and Position Papers
 
-Overviews of one or more WSP areas.
+Overviews of one or more of these areas.
 
 - [Position: Weight Space Should Be a First-Class Generative AI Modality](https://arxiv.org/abs/2605.18632) - *Zhangyang Wang et al. (2026), arXiv preprint.* Position paper arguing that weight space should be treated as a first-class generative modality.
 - [A Survey of Weight Space Learning: Understanding, Representation, and Generation](https://arxiv.org/abs/2603.10090) - *Xiaolong Han et al. (2026), arXiv preprint.* Survey of weight-space learning organized into understanding, representing, and generating weights. [[Code](https://github.com/Zehong-Wang/Awesome-Weight-Space-Learning)]
@@ -354,4 +417,4 @@ Contributions are welcome! The list is generated from [`papers.yaml`](papers.yam
 
 To the extent possible under law, the contributors have waived all copyright and related or neighboring rights to this work. See [LICENSE](LICENSE).
 
-<sub>245 papers. This file is generated from `papers.yaml` by `scripts/build_readme.py`; do not edit it by hand.</sub>
+<sub>259 papers. This file is generated from `papers.yaml` by `scripts/build_readme.py`; do not edit it by hand.</sub>

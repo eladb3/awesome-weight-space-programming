@@ -46,7 +46,9 @@ queries:
     - "weight sparse"
     - "weight diff"
     - '"mechanistic" AND "weights"'
-  agent-driven-editing:
+  weight-space-programming:
+    - "weight-space programming"
+    - "weight space programming"
     - '"agent" AND "model weights"'
     - '"language model" AND "edit weights"'
     - "self-edit"

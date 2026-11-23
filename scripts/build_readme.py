@@ -47,15 +47,29 @@ def arxiv_id(url: str) -> str | None:
 
 def validate(data: dict) -> list[str]:
     errors: list[str] = []
-    if not isinstance(data, dict) or "categories" not in data or "papers" not in data:
-        return ["papers.yaml must have top-level keys 'categories' and 'papers'"]
+    if not isinstance(data, dict) or not all(k in data for k in ("groups", "categories", "papers")):
+        return ["papers.yaml must have top-level keys 'groups', 'categories' and 'papers'"]
+
+    group_ids = []
+    for i, grp in enumerate(data["groups"]):
+        for key in ("id", "title", "description"):
+            if not isinstance(grp.get(key), str) or not grp[key].strip():
+                errors.append(f"group #{i + 1}: missing or empty '{key}'")
+        group_ids.append(grp.get("id"))
+    if len(group_ids) != len(set(group_ids)):
+        errors.append("duplicate group ids")
 
     cat_ids = []
     for i, cat in enumerate(data["categories"]):
-        for key in ("id", "title", "description"):
+        for key in ("id", "group", "title", "description"):
             if not isinstance(cat.get(key), str) or not cat[key].strip():
                 errors.append(f"category #{i + 1}: missing or empty '{key}'")
+        if cat.get("group") not in group_ids:
+            errors.append(f"category {cat.get('id')!r}: unknown group {cat.get('group')!r}")
         cat_ids.append(cat.get("id"))
+    titles = [g.get("title") for g in data["groups"]] + [c.get("title") for c in data["categories"]]
+    if len(titles) != len(set(titles)):
+        errors.append("group and category titles must all be distinct (they become README anchors)")
     if len(cat_ids) != len(set(cat_ids)):
         errors.append("duplicate category ids")
 
@@ -136,20 +150,29 @@ def render(data: dict) -> str:
     for p in papers:
         by_cat[p["category"]].append(p)
 
+    groups = data["groups"]
+    cats_in = {g["id"]: [c for c in cats if c["group"] == g["id"]] for g in groups}
+
     out = [header]
     out.append("## Contents\n")
-    for c in cats:
-        out.append(f"- [{c['title']}](#{slugify(c['title'])}) ({len(by_cat[c['id']])})")
+    for g in groups:
+        n = sum(len(by_cat[c["id"]]) for c in cats_in[g["id"]])
+        out.append(f"- [{g['title']}](#{slugify(g['title'])}) ({n})")
+        for c in cats_in[g["id"]]:
+            out.append(f"  - [{c['title']}](#{slugify(c['title'])}) ({len(by_cat[c['id']])})")
     out.append("- [Contributing](#contributing)")
     out.append("- [License](#license)\n")
 
-    for c in cats:
-        out.append(f"## {c['title']}\n")
-        out.append(f"{c['description'].strip()}\n")
-        for p in sorted(by_cat[c["id"]], key=sort_key):
-            out.append(render_entry(p))
-        out.append("")
-        out.append("**[⬆ back to top](#contents)**\n")
+    for g in groups:
+        out.append(f"## {g['title']}\n")
+        out.append(f"{g['description'].strip()}\n")
+        for c in cats_in[g["id"]]:
+            out.append(f"### {c['title']}\n")
+            out.append(f"{c['description'].strip()}\n")
+            for p in sorted(by_cat[c["id"]], key=sort_key):
+                out.append(render_entry(p))
+            out.append("")
+            out.append("**[⬆ back to top](#contents)**\n")
 
     out.append("## Contributing\n")
     out.append(

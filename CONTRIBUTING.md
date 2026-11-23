@@ -4,7 +4,7 @@ Thanks for helping improve **Awesome Weight-Space Programming**! The paper list 
 
 ## Is the paper in scope?
 
-The paper should treat a trained network's weights as something to directly read, edit, or write. In scope: model and knowledge editing, task vectors and model merging, weight-space learning, weight generation, weight-based interpretability, agent- or LLM-driven weight editing, and benchmarks, datasets, model zoos, and surveys for these.
+The core of the list is **weight-space programming**: LLMs or agents that read, edit, or write a network's weights directly (the `wsp-*` categories). It also covers the foundations this builds on, which treat a trained network's weights as something to directly compute, compose, learn from, or read. These are model and knowledge editing, task vectors and model merging, weight-space learning, weight generation, and weight-based interpretability. Benchmarks, datasets, tools, model zoos, and surveys for any of these are in scope too.
 
 Out of scope: ordinary fine-tuning, PEFT methods that are only a training recipe, activation steering with no weight change, and pruning or quantization unless the paper is about weight-space structure. For borderline papers, ask: would someone interested in directly manipulating weights want to read this?
 
@@ -60,4 +60,4 @@ Entries are sorted automatically (newest first), so the position of an entry in 
 
 ## Adding a category
 
-Add an item under `categories:` with an `id`, a `title`, and a one-sentence `description`. Sections appear in the README in the order they are listed.
+Add an item under `categories:` with an `id`, a `group` (one of the `groups:` ids), a `title`, and a one-sentence `description`. Groups become top-level README sections and categories become their subsections, both in the order they are listed.

@@ -4,7 +4,7 @@ This repository is a curated awesome-list of papers on **weight-space programmin
 
 ## Layout
 
-- `papers.yaml`: the single source of truth. It holds `categories` (README section order) and `papers`.
+- `papers.yaml`: the single source of truth. It holds `groups` (top-level README sections), `categories` (subsections, each with a `group`), and `papers`.
 - `scripts/build_readme.py`: validates `papers.yaml` and regenerates `README.md`. `--check` is the CI check.
 - `scripts/readme_header.md`: the static README intro, which defines WSP.
 - `scripts/arxiv_lookup.py`: prints verified `papers.yaml` stubs (title, authors, year, url) from the arXiv API. Pass `--abstract` to include abstracts and `--known` to flag duplicates.
@@ -32,8 +32,8 @@ A scheduled Claude session runs this routine once a day. It commits directly to 
    python scripts/arxiv_recent.py --days 7 --out /tmp/wsp_candidates.md
    ```
 
-   Then go beyond the keyword list. Run a few web searches for WSP work from the past week, such as new model-editing, model-merging, weight-generation, weight-space-learning and parameter-decomposition papers, and above all LLMs or agents that read or modify model weights. Also run free-form arXiv API queries for phrasings the config misses. Add any good new phrasing to `search_config.yaml`.
-3. **Judge relevance by reading each abstract**, not by keyword match. Apply the scope and exclusions from `CONTRIBUTING.md`. For a borderline paper, ask whether a reader interested in directly manipulating weights would want it. Prefer leaving out a marginal incremental variant over cluttering the list. Search hardest for the `agent-driven-editing` category.
+   Then go beyond the keyword list. Run a few web searches for WSP work from the past week, such as new model-editing, model-merging, weight-generation, weight-space-learning and parameter-decomposition papers, and above all LLMs or agents that read or modify model weights ("weight-space programming"). Also run free-form arXiv API queries for phrasings the config misses. Add any good new phrasing to `search_config.yaml`.
+3. **Judge relevance by reading each abstract**, not by keyword match. Apply the scope and exclusions from `CONTRIBUTING.md`. For a borderline paper, ask whether a reader interested in directly manipulating weights would want it. Prefer leaving out a marginal incremental variant over cluttering the list. Search hardest for the core Weight-Space Programming group (the `wsp-*` categories): LLMs or agents reading, editing, or writing weights, including papers that use the phrase "weight-space programming".
 4. **Skip duplicates.** Drop anything whose arXiv ID or title is already in `papers.yaml`. `arxiv_recent.py` already removes ID matches; also check titles for papers that are listed under a non-arXiv URL.
 5. **Verify and add.** For each paper you keep, run:
 

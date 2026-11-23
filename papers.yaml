@@ -1,36 +1,350 @@
 # Source of truth for README.md. Edit this file, then run: python scripts/build_readme.py
 # See CONTRIBUTING.md for the field rules. Entry order here does not matter.
 
+# Top-level README sections, in order. Each category belongs to one group.
+groups:
+  - id: wsp
+    title: Weight-Space Programming
+    description: Language models and agents that read, edit, or write the weights of other networks (or their own) directly, guided by a goal in natural language rather than by gradient descent.
+  - id: foundations
+    title: Foundations and Related Areas
+    description: Older lines of work that treat weights as objects to compute, compose, learn from, or read, and that weight-space programming builds on.
+  - id: resources
+    title: Resources
+    description: Benchmarks, datasets, tools, model zoos, and surveys.
+
+# Subsections, in README order.
 categories:
+  - id: wsp-reading
+    group: wsp
+    title: Reading Weights
+    description: Models that inspect another network's weights or weight diffs and say what the network does.
+  - id: wsp-editing
+    group: wsp
+    title: Editing and Repairing Models
+    description: An LLM or agent changes an existing network's weights to fix a failure or change a behaviour.
+  - id: wsp-writing
+    group: wsp
+    title: Writing Weights from Scratch
+    description: An LLM writes all the weights of a network, or installs a new capability, from a specification instead of training.
+  - id: wsp-self-editing
+    group: wsp
+    title: Self-Editing Models
+    description: Models that produce updates to their own weights.
+  - id: wsp-critiques
+    group: wsp
+    title: Replications, Critiques and Alternatives
+    description: Independent replications, tests of what the reading and writing really rely on, and non-LLM alternatives to the same edits.
+  - id: wsp-security
+    group: wsp
+    title: Security
+    description: Using weight-space programming to implant backdoors, and the risks this creates.
   - id: model-editing
+    group: foundations
     title: Model and Knowledge Editing
     description: Methods that change specific facts or behaviours by computing or learning a targeted weight update.
   - id: editing-analysis
+    group: foundations
     title: Analyses of Weight Edits
     description: Work on what weight edits look like and how they fail, including rank-one structure, locality, side effects, and collapse under many edits.
   - id: task-arithmetic-merging
+    group: foundations
     title: Task Vectors, Task Arithmetic and Model Merging
     description: Treating fine-tuning deltas as vectors to add, negate, and combine, and merging trained models directly in weight space.
   - id: weight-space-learning
+    group: foundations
     title: Weight-Space Learning
     description: Networks that take other networks' weights as input, including equivariant metanetworks, neural functionals, and weight embeddings.
   - id: weight-generation
+    group: foundations
     title: Weight Generation
     description: Hypernetworks and generative models (diffusion, flow matching, autoregressive) that output network weights, including prompt-to-weights and text-to-LoRA.
   - id: weight-interpretability
+    group: foundations
     title: Weight-Based Interpretability
     description: Reading what a network computes directly from its parameters, including parameter decomposition and circuit-level weight edits.
-  - id: agent-driven-editing
-    title: Agent- and LLM-Driven Weight Editing
-    description: A model reading, generating, or modifying another model's (or its own) weights, including LLMs that write weight updates and agents that edit models.
   - id: benchmarks-datasets
+    group: resources
     title: Benchmarks, Datasets, Tools and Model Zoos
-    description: Evaluation suites for weight edits and merges, software for manipulating weights, and collections of trained networks for weight-space research.
+    description: Evaluation suites for weight-space programming, weight edits and merges, software for manipulating weights, and collections of trained networks for weight-space research.
   - id: surveys
-    title: Surveys
-    description: Overviews of one or more WSP areas.
+    group: resources
+    title: Surveys and Position Papers
+    description: Overviews of one or more of these areas.
 
 papers:
+  - title: Learning to Interpret Weight Differences in Language Models
+    authors: Avichal Goel et al.
+    year: 2025
+    url: https://arxiv.org/abs/2510.05092
+    category: wsp-reading
+    note: Trains a model to describe its own fine-tuning weight diff in natural language, exposing hidden behaviours and new knowledge from weights alone.
+  - title: 'Weight Oracles: Reading Neural Network Weights with Language Models'
+    authors: Krishna Kabra et al.
+    year: 2026
+    venue: NeurIPS 2026 Workshop
+    url: https://arxiv.org/abs/2610.07334
+    category: wsp-reading
+    note: Fine-tunes LLMs to read another network's raw weights as tokens and answer diagnostic questions about it, such as whether it contains a backdoor.
+  - title: Weight-space programming for auditing clinical decision networks
+    authors: Humza Nusrat and Omar Nusrat
+    year: 2026
+    url: https://arxiv.org/abs/2611.05341
+    category: wsp-reading
+    note: An LLM audits clinical decision networks from their weights alone and repairs a hidden shortcut by changing a handful of parameters.
+  - title: 'From LoRA to Language: Recovering Skill Documents from Adapters'
+    authors: Saranya Dintakurthy Swadha et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.09454
+    category: wsp-reading
+    note: Tries to recover the skill document that a LoRA adapter was compiled from, comparing weights-only readers with agents that run or diff the adapter.
+  - title: 'WeightLoop: Weight-Space Programming with Experimental Feedback'
+    authors: Mengran Li et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.07319
+    category: wsp-editing
+    note: Turns experimental feedback into persistent weight corrections of scientific predictors through LLM-written update programs.
+  - title: Can LLMs Debug Robots by Editing Their Weights?
+    authors: Jusheng Zhang et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.09376
+    category: wsp-editing
+    note: An LLM repairs a robot foundation policy's instruction grounding by editing a few dozen embedding rows with simulator feedback and no gradient updates.
+  - title: 'Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations'
+    authors: Junru Hu et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.09382
+    category: wsp-editing
+    note: 'Systematic study of agent weight-editing trajectories on small LMs: small localized edits can give large gains, but generalization across tasks is inconsistent.'
+  - title: 'Mixed Signals: Weight-Space Programming for EEG and ECG'
+    authors: Dara Varam et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.13758
+    category: wsp-editing
+    note: Applies LLM weight reading and editing to EEG and ECG models, repairing planted faults by reasoning rather than gradient descent.
+  - title: 'Weights & Caches: LLMs Can Program Tabular Foundation Models'
+    authors: Shi Bin Hoo et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.20174
+    category: wsp-editing
+    note: Shows that LLMs can program statistical computations into a tabular foundation model's weights directly.
+  - title: Weight-Space Programming Changes How an LLM Uses Python for Computational Biology
+    authors: Makoto Sato
+    year: 2026
+    url: https://arxiv.org/abs/2611.20566
+    category: wsp-editing
+    note: A frontier LLM edits a small LM's weights and changes how it uses Python on computational-biology problems, nearly doubling strictly correct answers.
+  - title: Can AI Mature a Model's Geometry? Training-Free Weight Baking in LLMs
+    authors: Amin Golnari and Saeid Sanei
+    year: 2026
+    url: https://arxiv.org/abs/2611.21310
+    category: wsp-editing
+    note: An analyst model reads topological summaries of a frozen LM's layers and proposes a transformation that is written into its FFN weights in closed form.
+  - title: What Does Weight-Space Programming Add to Diffusion Editing? Program Construction versus Score-Guided Refinement
+    authors: Zitian Gao et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.22228
+    category: wsp-editing
+    note: Compares LM-written weight-update programs for diffusion concept editing against published editors and finds a mostly negative result.
+  - title: Weight Space Programming for Vision Language Model Repair
+    authors: Avinash Goutham Aluguvelly
+    year: 2026
+    url: https://arxiv.org/abs/2611.23615
+    category: wsp-editing
+    note: Plants faults in VLM weights and checks each repair a coding agent makes, revealing which cues gradient-free weight repairs rely on.
+  - title: Can Weight-Space Programming Alter Learned Ethical Priorities?
+    authors: Kai Yi Ji
+    year: 2026
+    url: https://arxiv.org/abs/2611.24330
+    category: wsp-editing
+    note: Edits the fitted choice weights of a concept-supervised text model to change how it trades off keeping a pledge against helping more people.
+  - title: 'Keel: A Frontier Model Teaches a Vision-Language Model by Rewriting Its Weights'
+    authors: Jiajun Fan et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.25257
+    category: wsp-editing
+    note: A frontier model diagnoses why a small VLM falls into reasoning loops and fixes it by rewriting the VLM's weights, given only the symptom.
+  - title: Training Vision Models for LLM-Driven Weight-Space Programming
+    authors: Timo Ropinski and Sebastian Kranz
+    year: 2026
+    url: https://arxiv.org/abs/2611.26408
+    category: wsp-editing
+    note: Benchmarks LLM weight editing of CNNs and ViTs at scale and proposes training networks to be easier for LLMs to edit.
+  - title: Weight-Space Programming Writes In-Context Learning and Matches Fine-Tuning in Language Models
+    authors: Konstantinos Skianis and Aristidis Likas
+    year: 2026
+    url: https://arxiv.org/abs/2611.26841
+    category: wsp-editing
+    note: Frontier editors turn in-context examples into MLP weight edits so a weaker LM performs the task with an empty prompt, matching ICL and LoRA fine-tuning.
+  - title: Weight-space programming and mechanistic interpretability for model editing in particle physics
+    authors: Raphaël Bonnet-Guerrini et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.27079
+    category: wsp-editing
+    note: Combines LLM weight-space programming with SAE-guided analysis to remove an infrared-safety violation from a particle-physics foundation model by direct weight edits.
+  - title: Writing Weights or Training Them? Spatial Reasoning through Weight-Space Programming and Low-Rank Adaptation
+    authors: Yalin Yang et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.27089
+    category: wsp-editing
+    note: Compares an LLM-written weight patch with LoRA fine-tuning on spatial-reasoning tasks for a small LM.
+  - title: 'NeuronGen: Neural Network Parameter Generation via Large Language Models'
+    authors: Jiaqi Wang et al.
+    year: 2025
+    url: https://arxiv.org/abs/2505.12470
+    category: wsp-writing
+    note: Has an LLM directly emit the parameters of small networks from task, data, and architecture descriptions, an early instance of LLM-written weights.
+  - title: Zero-Shot Weight-Space Programming Across a Difficulty-Graded Ladder of Two-Player Games
+    authors: Eduardo C. Garrido-Merchán
+    year: 2026
+    url: https://arxiv.org/abs/2611.09271
+    category: wsp-writing
+    note: Tests how far zero-shot hand-writing of network weights goes across games of increasing difficulty, from Nim to a chess endgame.
+  - title: Can a Language Model Write the Weights? An Empirical Study of LLM-Written Scoring Networks for Column Generation and MILP Branching, with a Bus-Driver Scheduling Application
+    authors: Renan Butkeraites
+    year: 2026
+    url: https://arxiv.org/abs/2611.09559
+    category: wsp-writing
+    note: Has an LLM write small scoring networks for column generation and MILP branching in exact optimization solvers.
+  - title: 'Weight-Space Programming of Variational Quantum Circuits: Large Language Models Write Quantum Circuit Parameters Without an Optimizer'
+    authors: Debarshi Kundu et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.11537
+    category: wsp-writing
+    note: 'Extends weight writing to quantum computing: an LLM sets variational quantum circuit angles directly, with no optimizer.'
+  - title: Weight-Space Programming of Policies and Their Verification via Model Checking
+    authors: Dennis Gross
+    year: 2026
+    url: https://arxiv.org/abs/2611.11604
+    category: wsp-writing
+    note: Combines LLM-written policy weights with probabilistic model checking so that a written policy can be verified against a formal requirement.
+  - title: 'Weight-Space Programming for Medical Imaging: Do We Still Need Training Data?'
+    authors: Maximilian Lindholz et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.12066
+    category: wsp-writing
+    note: Has LLMs write the weights of medical image classifiers from medical knowledge alone, asking whether training data is needed at all.
+  - title: 'Physics2Weight: Direct Neural Network Architecture and Weight Generation from Physical Laws Using Large Language Models'
+    authors: Shogo Sato et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.12954
+    category: wsp-writing
+    note: Has an LLM generate both the architecture and the weights of networks that solve PDEs directly from the governing physical laws (Physics2Weight).
+  - title: 'Compiling Known Rules into Compact Neural Agents: Weight-Space Programming on Unseen Games'
+    authors: Jens Lehmann
+    year: 2026
+    url: https://arxiv.org/abs/2611.16981
+    category: wsp-writing
+    note: LLM writers compile known game rules directly into the weights of compact recurrent agents that generalize to unseen levels.
+  - title: Interpretable weight-space programming builds transparent transformers and brain encoding models
+    authors: Yash Mehta et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.18114
+    category: wsp-writing
+    note: An LLM agent programs the weights of transparent transformers and brain-encoding models so their computations stay human-readable.
+  - title: Zero-Shot Weight-Space Programming for Prediction and Classification of Target Variables in Structured Datasets
+    authors: Eduardo C. Garrido-Merchán
+    year: 2026
+    url: https://arxiv.org/abs/2611.19292
+    category: wsp-writing
+    note: Has an LLM write every weight of a feed-forward network from a small dataset shown in full, so the LLM must do the statistical inference itself.
+  - title: 'Weight-space programming for tractor guidance controller: large language models natively write neural network weights that steer a real tractor'
+    authors: Timo Oksanen
+    year: 2026
+    url: https://arxiv.org/abs/2611.21958
+    category: wsp-writing
+    note: LLMs write and adapt the weights of a 253-parameter steering network that is deployed on a real tractor, with no optimizer.
+  - title: Weight-Space Programming for Materials Science
+    authors: Sk Md Ahnaf Akif Alvi and Raymundo Arróyave
+    year: 2026
+    url: https://arxiv.org/abs/2611.22013
+    category: wsp-writing
+    note: An LLM writes the weights of a small candidate-ranking network from a task description, for materials discovery with almost no labels.
+  - title: Weight-Space Programming Doesn't Need Transformers
+    authors: Hyunjong Ok and Jaeho Lee
+    year: 2026
+    url: https://arxiv.org/abs/2611.22055
+    category: wsp-writing
+    note: Lets LLMs that write weights by hand also choose the architecture, and finds they need not keep the transformer.
+  - title: 'WeightCode: Installing New Capabilities into Neural Networks via Weight-Space Programming'
+    authors: Bo Li et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.25476
+    category: wsp-writing
+    note: A frozen LM writes executable weight programs that install new capabilities into trained vision and navigation networks, outperforming fine-tuning baselines.
+  - title: Self-Adapting Language Models
+    authors: Adam Zweiger et al.
+    year: 2025
+    venue: NeurIPS 2025
+    url: https://arxiv.org/abs/2506.10943
+    category: wsp-self-editing
+    note: An LLM generates its own self-edits (fine-tuning data and update directives) that become persistent weight updates, trained with RL (SEAL).
+  - title: Search over Self-Edit Strategies for LLM Adaptation
+    authors: Alistair Cheong et al.
+    year: 2026
+    url: https://arxiv.org/abs/2601.14532
+    category: wsp-self-editing
+    note: Lets an LLM choose its own self-edit strategy and hyperparameters, deciding from task feedback how its weights should be updated.
+  - title: Language Models Can Rewrite Their Own Weights
+    authors: Jiajun Fan et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.21885
+    category: wsp-self-editing
+    note: A language model improves itself by reasoning about and rewriting its own weights, with no gradients or training run.
+  - title: 'Computation, not weight access: large language models as auditors of clinical prediction networks'
+    authors: Zhiyu Liu and Xinyu Yang
+    year: 2026
+    url: https://arxiv.org/abs/2611.07847
+    category: wsp-critiques
+    note: Separates an LLM reading weights in its prompt from an LLM running code on them, and shows that reliable auditing of clinical networks comes from computation, not weight access.
+  - title: Can an LLM Actually Reason and Program about Neural Network's Weights or is it just memorization on steroids? Exploring "Weight-Space Programming"
+    authors: Nazmus Sakib Ahmed
+    year: 2026
+    url: https://arxiv.org/abs/2611.08070
+    category: wsp-critiques
+    note: Probes whether an LLM reading raw CNN weights is reasoning about the weights or relying on local arithmetic plus memorized dataset priors.
+  - title: 'Tree-Ising: Repairing Language Models with Bit-Level Ising Edits'
+    authors: Hadi Salloum and Ammar Ali
+    year: 2026
+    url: https://arxiv.org/abs/2611.14210
+    category: wsp-critiques
+    note: Replaces an LLM agent's weight repair with a sparse discrete optimization over the model's own bits, a solver-based contrast to agent-driven editing.
+  - title: 'Same Fix, Different Weights: Replicating Weight-Space Programming with Claude'
+    authors: Subham Kundu
+    year: 2026
+    url: https://arxiv.org/abs/2611.20953
+    category: wsp-critiques
+    note: Pre-registered replication of weight reading, repair, and writing with a different frontier model, with untrained-network and permutation controls.
+  - title: Just sort it! A note on the LP behind rank-one anti-loop edits
+    authors: Matteo Fischetti
+    year: 2026
+    url: https://arxiv.org/abs/2611.21432
+    category: wsp-critiques
+    note: Shows that the sparse linear program behind the agent's rank-one anti-loop edit can be replaced by a simple sort, simplifying a celebrated WSP fix.
+  - title: 'Replicating and Extending Weight-Space Programming: Frontier LLMs Compile Programs into Weights and Read Input Layers'
+    authors: Roksana Goworek et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.21449
+    category: wsp-critiques
+    note: Independent replication of LLM weight-space programming; finds that written networks behave like compiled programs and that weight reading relies mostly on the input layer.
+  - title: Can LLMs Write Backdoors? An Empirical Security Study of Weight-Space Programming
+    authors: Zhaojia Wang et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.17395
+    category: wsp-security
+    note: Security study of several LLMs acting as weight editors that inject backdoors into MLPs, ResNets, and a small LM with few parameter changes.
+  - title: 'TrojanMaxxing: One-shotting VLM Backdoors with Weight-Space Programming'
+    authors: Ahaan Dabholkar et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.27425
+    category: wsp-security
+    note: LLM agents inspect a VLM's weights, edit them, and co-design a visual trigger to implant a backdoor in one shot with no training.
+  - title: 'Autonomous Parameter Surgery: How LLMs Implant Selective Backdoors into Language Models'
+    authors: Xuyang Liu et al.
+    year: 2026
+    url: https://arxiv.org/abs/2611.27920
+    category: wsp-security
+    note: Shows that an LLM can turn a natural-language backdoor specification into persistent rank-one or single-neuron weight edits on another LM, a security risk of weight-space programming.
   - title: Editable Neural Networks
     authors: Anton Sinitsin et al.
     year: 2020
@@ -298,12 +612,6 @@ papers:
     url: https://arxiv.org/abs/2611.12995
     category: model-editing
     note: Traces cross-edit interference in batched editing to overlapping target vectors and reduces it with sparse targets.
-  - title: 'Tree-Ising: Repairing Language Models with Bit-Level Ising Edits'
-    authors: Hadi Salloum and Ammar Ali
-    year: 2026
-    url: https://arxiv.org/abs/2611.14210
-    category: model-editing
-    note: Replaces an LLM agent's weight repair with a sparse discrete optimization over the model's own bits, a solver-based contrast to agent-driven editing.
   - title: 'MuEdit: An efficient multi-task editing method towards inter-domain knowledge conflicts'
     authors: Songshi Liang et al.
     year: 2026
@@ -1304,188 +1612,6 @@ papers:
     url: https://arxiv.org/abs/2610.20748
     category: weight-interpretability
     note: Decomposes a 67M-parameter language model's weights into rank-one subcomponents and uses them to edit behaviour.
-  - title: 'NeuronGen: Neural Network Parameter Generation via Large Language Models'
-    authors: Jiaqi Wang et al.
-    year: 2025
-    url: https://arxiv.org/abs/2505.12470
-    category: agent-driven-editing
-    note: Has an LLM directly emit the parameters of small networks from task, data, and architecture descriptions, an early instance of LLM-written weights.
-  - title: Self-Adapting Language Models
-    authors: Adam Zweiger et al.
-    year: 2025
-    venue: NeurIPS 2025
-    url: https://arxiv.org/abs/2506.10943
-    category: agent-driven-editing
-    note: An LLM generates its own self-edits (fine-tuning data and update directives) that become persistent weight updates, trained with RL (SEAL).
-  - title: Learning to Interpret Weight Differences in Language Models
-    authors: Avichal Goel et al.
-    year: 2025
-    url: https://arxiv.org/abs/2510.05092
-    category: agent-driven-editing
-    note: Trains a model to describe its own fine-tuning weight diff in natural language, exposing hidden behaviours and new knowledge from weights alone.
-  - title: Search over Self-Edit Strategies for LLM Adaptation
-    authors: Alistair Cheong et al.
-    year: 2026
-    url: https://arxiv.org/abs/2601.14532
-    category: agent-driven-editing
-    note: Lets an LLM choose its own self-edit strategy and hyperparameters, deciding from task feedback how its weights should be updated.
-  - title: 'Weight Oracles: Reading Neural Network Weights with Language Models'
-    authors: Krishna Kabra et al.
-    year: 2026
-    venue: NeurIPS 2026 Workshop
-    url: https://arxiv.org/abs/2610.07334
-    category: agent-driven-editing
-    note: Fine-tunes LLMs to read another network's raw weights as tokens and answer diagnostic questions about it, such as whether it contains a backdoor.
-  - title: Weight-space programming for auditing clinical decision networks
-    authors: Humza Nusrat and Omar Nusrat
-    year: 2026
-    url: https://arxiv.org/abs/2611.05341
-    category: agent-driven-editing
-    note: An LLM audits clinical decision networks from their weights alone and repairs a hidden shortcut by changing a handful of parameters.
-  - title: 'WeightLoop: Weight-Space Programming with Experimental Feedback'
-    authors: Mengran Li et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.07319
-    category: agent-driven-editing
-    note: Turns experimental feedback into persistent weight corrections of scientific predictors through LLM-written update programs.
-  - title: 'Computation, not weight access: large language models as auditors of clinical prediction networks'
-    authors: Zhiyu Liu and Xinyu Yang
-    year: 2026
-    url: https://arxiv.org/abs/2611.07847
-    category: agent-driven-editing
-    note: Separates an LLM reading weights in its prompt from an LLM running code on them, and shows that reliable auditing of clinical networks comes from computation, not weight access.
-  - title: Can an LLM Actually Reason and Program about Neural Network's Weights or is it just memorization on steroids? Exploring "Weight-Space Programming"
-    authors: Nazmus Sakib Ahmed
-    year: 2026
-    url: https://arxiv.org/abs/2611.08070
-    category: agent-driven-editing
-    note: Probes whether an LLM reading raw CNN weights is reasoning about the weights or relying on local arithmetic plus memorized dataset priors.
-  - title: Can LLMs Debug Robots by Editing Their Weights?
-    authors: Jusheng Zhang et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.09376
-    category: agent-driven-editing
-    note: An LLM repairs a robot foundation policy's instruction grounding by editing a few dozen embedding rows with simulator feedback and no gradient updates.
-  - title: 'Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations'
-    authors: Junru Hu et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.09382
-    category: agent-driven-editing
-    note: 'Systematic study of agent weight-editing trajectories on small LMs: small localized edits can give large gains, but generalization across tasks is inconsistent.'
-  - title: 'From LoRA to Language: Recovering Skill Documents from Adapters'
-    authors: Saranya Dintakurthy Swadha et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.09454
-    category: agent-driven-editing
-    note: Tries to recover the skill document that a LoRA adapter was compiled from, comparing weights-only readers with agents that run or diff the adapter.
-  - title: 'Compiling Known Rules into Compact Neural Agents: Weight-Space Programming on Unseen Games'
-    authors: Jens Lehmann
-    year: 2026
-    url: https://arxiv.org/abs/2611.16981
-    category: agent-driven-editing
-    note: LLM writers compile known game rules directly into the weights of compact recurrent agents that generalize to unseen levels.
-  - title: Can LLMs Write Backdoors? An Empirical Security Study of Weight-Space Programming
-    authors: Zhaojia Wang et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.17395
-    category: agent-driven-editing
-    note: Security study of several LLMs acting as weight editors that inject backdoors into MLPs, ResNets, and a small LM with few parameter changes.
-  - title: Interpretable weight-space programming builds transparent transformers and brain encoding models
-    authors: Yash Mehta et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.18114
-    category: agent-driven-editing
-    note: An LLM agent programs the weights of transparent transformers and brain-encoding models so their computations stay human-readable.
-  - title: 'Weights & Caches: LLMs Can Program Tabular Foundation Models'
-    authors: Shi Bin Hoo et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.20174
-    category: agent-driven-editing
-    note: Shows that LLMs can program statistical computations into a tabular foundation model's weights directly.
-  - title: 'Same Fix, Different Weights: Replicating Weight-Space Programming with Claude'
-    authors: Subham Kundu
-    year: 2026
-    url: https://arxiv.org/abs/2611.20953
-    category: agent-driven-editing
-    note: Pre-registered replication of weight reading, repair, and writing with a different frontier model, with untrained-network and permutation controls.
-  - title: Can AI Mature a Model's Geometry? Training-Free Weight Baking in LLMs
-    authors: Amin Golnari and Saeid Sanei
-    year: 2026
-    url: https://arxiv.org/abs/2611.21310
-    category: agent-driven-editing
-    note: An analyst model reads topological summaries of a frozen LM's layers and proposes a transformation that is written into its FFN weights in closed form.
-  - title: 'Replicating and Extending Weight-Space Programming: Frontier LLMs Compile Programs into Weights and Read Input Layers'
-    authors: Roksana Goworek et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.21449
-    category: agent-driven-editing
-    note: Independent replication of LLM weight-space programming; finds that written networks behave like compiled programs and that weight reading relies mostly on the input layer.
-  - title: Language Models Can Rewrite Their Own Weights
-    authors: Jiajun Fan et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.21885
-    category: agent-driven-editing
-    note: A language model improves itself by reasoning about and rewriting its own weights, with no gradients or training run.
-  - title: 'Weight-space programming for tractor guidance controller: large language models natively write neural network weights that steer a real tractor'
-    authors: Timo Oksanen
-    year: 2026
-    url: https://arxiv.org/abs/2611.21958
-    category: agent-driven-editing
-    note: LLMs write and adapt the weights of a 253-parameter steering network that is deployed on a real tractor, with no optimizer.
-  - title: What Does Weight-Space Programming Add to Diffusion Editing? Program Construction versus Score-Guided Refinement
-    authors: Zitian Gao et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.22228
-    category: agent-driven-editing
-    note: Compares LM-written weight-update programs for diffusion concept editing against published editors and finds a mostly negative result.
-  - title: Weight Space Programming for Vision Language Model Repair
-    authors: Avinash Goutham Aluguvelly
-    year: 2026
-    url: https://arxiv.org/abs/2611.23615
-    category: agent-driven-editing
-    note: Plants faults in VLM weights and checks each repair a coding agent makes, revealing which cues gradient-free weight repairs rely on.
-  - title: 'Keel: A Frontier Model Teaches a Vision-Language Model by Rewriting Its Weights'
-    authors: Jiajun Fan et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.25257
-    category: agent-driven-editing
-    note: A frontier model diagnoses why a small VLM falls into reasoning loops and fixes it by rewriting the VLM's weights, given only the symptom.
-  - title: 'WeightCode: Installing New Capabilities into Neural Networks via Weight-Space Programming'
-    authors: Bo Li et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.25476
-    category: agent-driven-editing
-    note: A frozen LM writes executable weight programs that install new capabilities into trained vision and navigation networks, outperforming fine-tuning baselines.
-  - title: Training Vision Models for LLM-Driven Weight-Space Programming
-    authors: Timo Ropinski and Sebastian Kranz
-    year: 2026
-    url: https://arxiv.org/abs/2611.26408
-    category: agent-driven-editing
-    note: Benchmarks LLM weight editing of CNNs and ViTs at scale and proposes training networks to be easier for LLMs to edit.
-  - title: Weight-Space Programming Writes In-Context Learning and Matches Fine-Tuning in Language Models
-    authors: Konstantinos Skianis and Aristidis Likas
-    year: 2026
-    url: https://arxiv.org/abs/2611.26841
-    category: agent-driven-editing
-    note: Frontier editors turn in-context examples into MLP weight edits so a weaker LM performs the task with an empty prompt, matching ICL and LoRA fine-tuning.
-  - title: Weight-space programming and mechanistic interpretability for model editing in particle physics
-    authors: Raphaël Bonnet-Guerrini et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.27079
-    category: agent-driven-editing
-    note: Combines LLM weight-space programming with SAE-guided analysis to remove an infrared-safety violation from a particle-physics foundation model by direct weight edits.
-  - title: 'TrojanMaxxing: One-shotting VLM Backdoors with Weight-Space Programming'
-    authors: Ahaan Dabholkar et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.27425
-    category: agent-driven-editing
-    note: LLM agents inspect a VLM's weights, edit them, and co-design a visual trigger to implant a backdoor in one shot with no training.
-  - title: 'Autonomous Parameter Surgery: How LLMs Implant Selective Backdoors into Language Models'
-    authors: Xuyang Liu et al.
-    year: 2026
-    url: https://arxiv.org/abs/2611.27920
-    category: agent-driven-editing
-    note: Shows that an LLM can turn a natural-language backdoor specification into persistent rank-one or single-neuron weight edits on another LM, a security risk of weight-space programming.
   - title: 'Classifying the classifier: dissecting the weight space of neural networks'
     authors: Gabriel Eilertsen et al.
     year: 2020

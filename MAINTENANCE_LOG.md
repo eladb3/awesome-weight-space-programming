@@ -4,7 +4,8 @@ One line per maintenance run that changed `papers.yaml`, newest first. The "skip
 
 | Date | Changes | Skipped borderline |
 |---|---|---|
-| 2026-11-23 | Seed: 245 papers added across 9 categories (see below for skipped candidates) | See "Seed run" section |
+| 2026-11-23 | Reorganized into Weight-Space Programming / Foundations / Resources; added 14 WSP papers (2611.20566, 2611.27089, 2611.13758, 2611.24330, 2611.12066, 2611.22055, 2611.19292, 2611.09271, 2611.11604, 2611.11537, 2611.12954, 2611.09559, 2611.22013, 2611.21432) | 2611.18690 and 2611.04268 (see below) |
+| 2026-11-23 | Seed: 245 papers added (see below for skipped candidates) | See "Seed run" section |
 
 ## Seed run (2026-11-23): candidates considered and left out
 
@@ -12,22 +13,8 @@ These papers were found and checked during the initial population but left out a
 
 | arXiv | Paper | Reason |
 |---|---|---|
-| [2611.18690](https://arxiv.org/abs/2611.18690) | Perceptual WSP for Diffusion Super-Resolution | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.04268](https://arxiv.org/abs/2611.04268) | WSP for Image-Restoration Diffusion Models | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.20566](https://arxiv.org/abs/2611.20566) | WSP Changes How an LLM Uses Python for Comp Bio | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.27089](https://arxiv.org/abs/2611.27089) | Writing Weights or Training Them? Spatial Reasoning | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.13758](https://arxiv.org/abs/2611.13758) | Mixed Signals: WSP for EEG and ECG | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.12066](https://arxiv.org/abs/2611.12066) | WSP for Medical Imaging | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.22055](https://arxiv.org/abs/2611.22055) | WSP Doesn't Need Transformers | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.19292](https://arxiv.org/abs/2611.19292) | Zero-Shot WSP for Structured Datasets | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.09271](https://arxiv.org/abs/2611.09271) | Zero-Shot WSP Across a Ladder of Two-Player Games | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.11604](https://arxiv.org/abs/2611.11604) | WSP of Policies + Model Checking | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.11537](https://arxiv.org/abs/2611.11537) | WSP of Variational Quantum Circuits | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.12954](https://arxiv.org/abs/2611.12954) | Physics2Weight | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.09559](https://arxiv.org/abs/2611.09559) | LLM-Written Scoring Networks for Column Generation / MILP | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.22013](https://arxiv.org/abs/2611.22013) | WSP for Materials Science | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.24330](https://arxiv.org/abs/2611.24330) | Can WSP Alter Learned Ethical Priorities? | narrow application of LLM-driven weight editing; representative examples were included |
-| [2611.21432](https://arxiv.org/abs/2611.21432) | Just sort it! LP behind rank-one anti-loop edits | Short analysis note on the agent's rank-one edit; not itself agent-driven |
+| [2611.18690](https://arxiv.org/abs/2611.18690) | Perceptual WSP for Diffusion Super-Resolution | the authors' arXiv comment says the evaluation has issues and the findings may not be reliable |
+| [2611.04268](https://arxiv.org/abs/2611.04268) | WSP for Image-Restoration Diffusion Models | explicitly conjectural (per its arXiv comment), with no established results yet |
 | [2404.14394](https://arxiv.org/abs/2404.14394) | MAIA: Multimodal Automated Interpretability Agent | Agent runs interpretability experiments but does not write persistent weight edits |
 | [2311.10905](https://arxiv.org/abs/2311.10905) | Flexible Model Interpretability through NL Model Editing | Short abstract links NL-driven editing and interpretability but gives no clear mechanism by which a model writes weights |
 | [2601.07309](https://arxiv.org/abs/2601.07309) | ARM: Role-Conditioned Neuron Transplantation for Agent Merging | Merges agent LLMs via neuron transplantation; the merge is algorithmic, not LLM-driven |
