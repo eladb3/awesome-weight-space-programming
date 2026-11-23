@@ -1,0 +1,60 @@
+# Search starting points for the daily maintenance session (see CLAUDE.md).
+# These are recall aids, not relevance rules: a paper is added only if its
+# abstract shows it fits the scope in README.md, never because of a keyword match.
+# Edit freely; phrases are matched against arXiv abstracts (abs:) and titles (ti:).
+
+arxiv_categories: [cs.LG, cs.CL, cs.AI, cs.CV, cs.NE, stat.ML]
+
+lookback_days: 7
+
+queries:
+  model-editing:
+    - "model editing"
+    - "knowledge editing"
+    - "locate-then-edit"
+    - "sequential editing"
+    - "lifelong editing"
+    - "rank-one model editing"
+    - "editing factual associations"
+    - "MEMIT"
+  task-arithmetic-merging:
+    - "task vector"
+    - "task arithmetic"
+    - "model merging"
+    - "weight averaging"
+    - "permutation symmetry"
+    - "merging LoRA"
+  weight-space-learning:
+    - "weight space"
+    - "weight-space"
+    - "neural functional"
+    - "metanetwork"
+    - '"equivariant" AND "weights"'
+    - "model zoo"
+    - "learning on weights"
+  weight-generation:
+    - "hypernetwork"
+    - "parameter generation"
+    - "weight generation"
+    - "LoRA generation"
+    - "text-to-LoRA"
+    - '"diffusion" AND "network parameters"'
+  weight-interpretability:
+    - "parameter decomposition"
+    - "weight-based interpretability"
+    - "interpret weights"
+    - "weight sparse"
+    - "weight diff"
+    - '"mechanistic" AND "weights"'
+  agent-driven-editing:
+    - '"agent" AND "model weights"'
+    - '"language model" AND "edit weights"'
+    - "self-edit"
+    - "self-adapting language model"
+    - "weights as input"
+    - '"LLM" AND "weight space"'
+    - '"automated interpretability" AND "edit"'
+    - '"LoRA" AND "natural language" AND "weights"'
+
+# Example arXiv API call (spaces as %20, quotes as %22, AND as +AND+):
+# https://export.arxiv.org/api/query?search_query=abs:%22model%20editing%22&sortBy=submittedDate&sortOrder=descending&max_results=100
