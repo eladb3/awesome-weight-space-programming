@@ -57,6 +57,10 @@ queries:
     - '"LLM" AND "weight space"'
     - '"automated interpretability" AND "edit"'
     - '"LoRA" AND "natural language" AND "weights"'
+    - '"own weights" AND "edit"'
+    - '"coding agent" AND "weights"'
+    - "weight coding"
+    - "raw weights"
 
 # Example arXiv API call (spaces as %20, quotes as %22, AND as +AND+):
 # https://export.arxiv.org/api/query?search_query=abs:%22model%20editing%22&sortBy=submittedDate&sortOrder=descending&max_results=100
