@@ -2521,3 +2521,12 @@ papers:
     code: https://github.com/mbzuai-oryx/LoopedWSP
     category: wsp-writing
     note: An LLM hand-writes every weight of a small looped transformer that repeats one block as long as needed, solving all of the hard mazes it fails to solve itself and scaling to far longer algorithmic tasks.
+  - title: 'Weight-Space Micromachines: Brain Implants for LLMs'
+    authors: Dimitris Papailiopoulos
+    year: 2026
+    date: '2026-11-25'
+    venue: Blog post (papail.io)
+    url: https://papail.io/papers/wsm/
+    code: https://github.com/anadim/weight-space-micromachines
+    category: wsp-writing
+    note: A coding agent writes small exact modules (a calculator, a mistake detector, image inputs, memory) into weight space and attaches them to a frozen LLM, where they stay off until needed and lift benchmarks, alone or combined with RL.
