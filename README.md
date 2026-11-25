@@ -4,7 +4,7 @@
 
 > A curated list of papers on reading, editing, and writing the weights of neural networks directly.
 
-**Weight-space programming (WSP)** is the practice of having a language model or agent work on a neural network's weights directly: *read* them to say what the network does, *edit* them to fix a failure or change a behaviour, or *write* them from scratch from a specification. It is guided by a goal stated in natural language instead of by gradient descent on data. The term was introduced by Takehi, Teoh, Zhang and Khattab in ["Sparks of Weight-Space Programming"](https://www.lesswrong.com/llmRuns/zSHqRnRtDKnuAGNpW) (MIT CSAIL, November 2026). Within weeks it was followed by replications, critiques, benchmarks, security studies, and applications from robotics to medicine.
+**Weight-space programming (WSP)** is the practice of having a language model or agent work on a neural network's weights directly: *read* them to say what the network does, *edit* them to fix a failure or change a behaviour, or *write* them from scratch from a specification. It is guided by a goal stated in natural language instead of by gradient descent on data. The term was introduced by Takehi, Teoh, Zhang and Khattab in ["Sparks of Weight-Space Programming"](https://rikiyat.github.io/blog/weight-space-programming/) (MIT CSAIL, November 2026). Within weeks it was followed by replications, critiques, benchmarks, security studies, and applications from robotics to medicine.
 
 The list has three parts:
 
@@ -20,10 +20,10 @@ Publication dates are those of the first public version, usually arXiv v1. Citat
 
 ## Contents
 
-- [Weight-Space Programming](#weight-space-programming) (61)
+- [Weight-Space Programming](#weight-space-programming) (63)
   - [Reading Weights](#reading-weights) (5)
-  - [Editing and Repairing Models](#editing-and-repairing-models) (19)
-  - [Writing Weights from Scratch](#writing-weights-from-scratch) (15)
+  - [Editing and Repairing Models](#editing-and-repairing-models) (20)
+  - [Writing Weights from Scratch](#writing-weights-from-scratch) (16)
   - [Self-Editing Models](#self-editing-models) (7)
   - [Replications, Critiques and Alternatives](#replications-critiques-and-alternatives) (12)
   - [Security](#security) (3)
@@ -79,6 +79,7 @@ An LLM or agent changes an existing network's weights to fix a failure or change
 - [Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations](https://arxiv.org/abs/2611.09382) - *Junru Hu et al., arXiv preprint. Published 2026-11-06, 12 citations.* Systematic study of agent weight-editing trajectories on small LMs: small localized edits can give large gains, but generalization across tasks is inconsistent.
 - [Can LLMs Debug Robots by Editing Their Weights?](https://arxiv.org/abs/2611.09376) - *Jusheng Zhang et al., arXiv preprint. Published 2026-11-06, 5 citations.* An LLM repairs a robot foundation policy's instruction grounding by editing a few dozen embedding rows with simulator feedback and no gradient updates.
 - [WeightLoop: Weight-Space Programming with Experimental Feedback](https://arxiv.org/abs/2611.07319) - *Mengran Li et al., arXiv preprint. Published 2026-11-05, 7 citations.* Turns experimental feedback into persistent weight corrections of scientific predictors through LLM-written update programs.
+- [Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights](https://rikiyat.github.io/blog/weight-space-programming/) - *Rikiya Takehi et al., Blog post (MIT CSAIL). Published 2026-11-02.* The post that introduced weight-space programming, showing that a frontier LLM can read raw weights, repair networks such as a looping small reasoning model, and write small networks from scratch, all without gradients. [[Code](https://github.com/RikiyaT/lm_understand-logs)]
 
 **[⬆ back to top](#contents)**
 
@@ -86,6 +87,7 @@ An LLM or agent changes an existing network's weights to fix a failure or change
 
 An LLM writes all the weights of a network, or installs a new capability, from a specification instead of training.
 
+- [Looped Weight-Space Programming: LLM-Written Transformers for Long Algorithmic Reasoning](https://mbzuai-oryx.github.io/LoopedWSP/) - *Abdelrahman Elsayed et al., Blog post (MBZUAI). Published 2026-11-23.* An LLM hand-writes every weight of a small looped transformer that repeats one block as long as needed, solving all of the hard mazes it fails to solve itself and scaling to far longer algorithmic tasks. [[Code](https://github.com/mbzuai-oryx/LoopedWSP)]
 - [Don't Train It, Write It: An AI Agent Writes New Capabilities into Language Model Weights](https://arxiv.org/abs/2611.28483) - *Santiago Rivadeneira Quintero, arXiv preprint. Published 2026-11-21, 0 citations.* An agent installs new capabilities, including exact long multiplication, by adding hand-written gated heads and neurons to a pretrained LLM while leaving its other outputs exactly unchanged.
 - [WeightCode: Installing New Capabilities into Neural Networks via Weight-Space Programming](https://arxiv.org/abs/2611.25476) - *Bo Li et al., arXiv preprint. Published 2026-11-19, 1 citation.* A frozen LM writes executable weight programs that install new capabilities into trained vision and navigation networks, outperforming fine-tuning baselines.
 - [Weight-Space Programming Doesn't Need Transformers](https://arxiv.org/abs/2611.22055) - *Hyunjong Ok and Jaeho Lee, arXiv preprint. Published 2026-11-17, 0 citations.* Lets LLMs that write weights by hand also choose the architecture, and finds they need not keep the transformer.
@@ -440,4 +442,4 @@ Contributions are welcome! The list is generated from [`papers.yaml`](papers.yam
 
 To the extent possible under law, the contributors have waived all copyright and related or neighboring rights to this work. See [LICENSE](LICENSE).
 
-<sub>280 papers. This file is generated from `papers.yaml` by `scripts/build_readme.py`; do not edit it by hand.</sub>
+<sub>282 papers. This file is generated from `papers.yaml` by `scripts/build_readme.py`; do not edit it by hand.</sub>

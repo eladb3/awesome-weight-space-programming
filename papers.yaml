@@ -2503,3 +2503,21 @@ papers:
     category: weight-interpretability
     citations: 1
     note: Makes parameter decomposition affordable by recovering only the weight components behind chosen inputs, enough to surgically ablate and rewire memorized sequences in a transformer.
+  - title: 'Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights'
+    authors: Rikiya Takehi et al.
+    year: 2026
+    date: '2026-11-02'
+    venue: Blog post (MIT CSAIL)
+    url: https://rikiyat.github.io/blog/weight-space-programming/
+    code: https://github.com/RikiyaT/lm_understand-logs
+    category: wsp-editing
+    note: The post that introduced weight-space programming, showing that a frontier LLM can read raw weights, repair networks such as a looping small reasoning model, and write small networks from scratch, all without gradients.
+  - title: 'Looped Weight-Space Programming: LLM-Written Transformers for Long Algorithmic Reasoning'
+    authors: Abdelrahman Elsayed et al.
+    year: 2026
+    date: '2026-11-23'
+    venue: Blog post (MBZUAI)
+    url: https://mbzuai-oryx.github.io/LoopedWSP/
+    code: https://github.com/mbzuai-oryx/LoopedWSP
+    category: wsp-writing
+    note: An LLM hand-writes every weight of a small looped transformer that repeats one block as long as needed, solving all of the hard mazes it fails to solve itself and scaling to far longer algorithmic tasks.
