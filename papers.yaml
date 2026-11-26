@@ -23,10 +23,14 @@ categories:
     group: wsp
     title: Editing and Repairing Models
     description: An LLM or agent changes an existing network's weights to fix a failure or change a behaviour.
+  - id: wsp-adding
+    group: wsp
+    title: Adding Capabilities to Trained Models
+    description: An LLM or agent writes new modules, neurons, or circuits into an existing trained model to give it a capability it lacked, leaving its original behaviour intact.
   - id: wsp-writing
     group: wsp
     title: Writing Weights from Scratch
-    description: An LLM writes all the weights of a network, or installs a new capability, from a specification instead of training.
+    description: An LLM writes every weight of a new network from a specification, with no training.
   - id: wsp-self-editing
     group: wsp
     title: Self-Editing Models
@@ -339,7 +343,7 @@ papers:
     year: 2026
     date: '2026-11-19'
     url: https://arxiv.org/abs/2611.25476
-    category: wsp-writing
+    category: wsp-adding
     citations: 1
     note: A frozen LM writes executable weight programs that install new capabilities into trained vision and navigation networks, outperforming fine-tuning baselines.
   - title: Self-Adapting Language Models
@@ -2405,7 +2409,7 @@ papers:
     year: 2026
     date: '2026-11-21'
     url: https://arxiv.org/abs/2611.28483
-    category: wsp-writing
+    category: wsp-adding
     citations: 0
     note: An agent installs new capabilities, including exact long multiplication, by adding hand-written gated heads and neurons to a pretrained LLM while leaving its other outputs exactly unchanged.
   - title: When Can a Rewiring Control Test LLM Weight Readers? C2 and an Eligibility Protocol
@@ -2531,7 +2535,7 @@ papers:
     venue: Blog post (papail.io)
     url: https://papail.io/papers/wsm/
     code: https://github.com/anadim/weight-space-micromachines
-    category: wsp-writing
+    category: wsp-adding
     note: A coding agent writes small exact modules (a calculator, a mistake detector, image inputs, memory) into weight space and attaches them to a frozen LLM, where they stay off until needed and lift benchmarks, alone or combined with RL.
   - title: Can a Frontier LLM Repair a Quantized Network by Tool-Free Weight-Space Programming?
     authors: Steffen Urban

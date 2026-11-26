@@ -23,7 +23,8 @@ Publication dates are those of the first public version, usually arXiv v1. Citat
 - [Weight-Space Programming](#weight-space-programming) (68)
   - [Reading Weights](#reading-weights) (6)
   - [Editing and Repairing Models](#editing-and-repairing-models) (22)
-  - [Writing Weights from Scratch](#writing-weights-from-scratch) (17)
+  - [Adding Capabilities to Trained Models](#adding-capabilities-to-trained-models) (3)
+  - [Writing Weights from Scratch](#writing-weights-from-scratch) (14)
   - [Self-Editing Models](#self-editing-models) (7)
   - [Replications, Critiques and Alternatives](#replications-critiques-and-alternatives) (13)
   - [Security](#security) (3)
@@ -86,14 +87,21 @@ An LLM or agent changes an existing network's weights to fix a failure or change
 
 **[⬆ back to top](#contents)**
 
-### Writing Weights from Scratch
+### Adding Capabilities to Trained Models
 
-An LLM writes all the weights of a network, or installs a new capability, from a specification instead of training.
+An LLM or agent writes new modules, neurons, or circuits into an existing trained model to give it a capability it lacked, leaving its original behaviour intact.
 
 - [Weight-Space Micromachines: Brain Implants for LLMs](https://papail.io/papers/wsm/) - *Dimitris Papailiopoulos, Blog post (papail.io). Published 2026-11-25.* A coding agent writes small exact modules (a calculator, a mistake detector, image inputs, memory) into weight space and attaches them to a frozen LLM, where they stay off until needed and lift benchmarks, alone or combined with RL. [[Code](https://github.com/anadim/weight-space-micromachines)]
-- [Looped Weight-Space Programming: LLM-Written Transformers for Long Algorithmic Reasoning](https://mbzuai-oryx.github.io/LoopedWSP/) - *Abdelrahman Elsayed et al., Blog post (MBZUAI). Published 2026-11-23.* An LLM hand-writes every weight of a small looped transformer that repeats one block as long as needed, solving all of the hard mazes it fails to solve itself and scaling to far longer algorithmic tasks. [[Code](https://github.com/mbzuai-oryx/LoopedWSP)]
 - [Don't Train It, Write It: An AI Agent Writes New Capabilities into Language Model Weights](https://arxiv.org/abs/2611.28483) - *Santiago Rivadeneira Quintero, arXiv preprint. Published 2026-11-21, 0 citations.* An agent installs new capabilities, including exact long multiplication, by adding hand-written gated heads and neurons to a pretrained LLM while leaving its other outputs exactly unchanged.
 - [WeightCode: Installing New Capabilities into Neural Networks via Weight-Space Programming](https://arxiv.org/abs/2611.25476) - *Bo Li et al., arXiv preprint. Published 2026-11-19, 1 citation.* A frozen LM writes executable weight programs that install new capabilities into trained vision and navigation networks, outperforming fine-tuning baselines.
+
+**[⬆ back to top](#contents)**
+
+### Writing Weights from Scratch
+
+An LLM writes every weight of a new network from a specification, with no training.
+
+- [Looped Weight-Space Programming: LLM-Written Transformers for Long Algorithmic Reasoning](https://mbzuai-oryx.github.io/LoopedWSP/) - *Abdelrahman Elsayed et al., Blog post (MBZUAI). Published 2026-11-23.* An LLM hand-writes every weight of a small looped transformer that repeats one block as long as needed, solving all of the hard mazes it fails to solve itself and scaling to far longer algorithmic tasks. [[Code](https://github.com/mbzuai-oryx/LoopedWSP)]
 - [Weight-Space Programming Doesn't Need Transformers](https://arxiv.org/abs/2611.22055) - *Hyunjong Ok and Jaeho Lee, arXiv preprint. Published 2026-11-17, 0 citations.* Lets LLMs that write weights by hand also choose the architecture, and finds they need not keep the transformer.
 - [Weight-Space Programming for Materials Science](https://arxiv.org/abs/2611.22013) - *Sk Md Ahnaf Akif Alvi and Raymundo Arróyave, arXiv preprint. Published 2026-11-17, 0 citations.* An LLM writes the weights of a small candidate-ranking network from a task description, for materials discovery with almost no labels.
 - [Weight-space programming for tractor guidance controller: large language models natively write neural network weights that steer a real tractor](https://arxiv.org/abs/2611.21958) - *Timo Oksanen, arXiv preprint. Published 2026-11-16, 0 citations.* LLMs write and adapt the weights of a 253-parameter steering network that is deployed on a real tractor, with no optimizer.
