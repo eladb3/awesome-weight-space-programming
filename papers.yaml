@@ -73,7 +73,7 @@ categories:
     description: Overviews of one or more of these areas.
 
 # Date of the last citation-count refresh (scripts/refresh_metadata.py).
-citations_updated: '2026-11-25'
+citations_updated: '2026-11-26'
 
 papers:
   - title: Learning to Interpret Weight Differences in Language Models
@@ -83,7 +83,7 @@ papers:
     url: https://arxiv.org/abs/2510.05092
     code: https://github.com/Aviously/diff-interpretation-tuning
     category: wsp-reading
-    citations: 22
+    citations: 23
     note: Trains a model to describe its own fine-tuning weight diff in natural language, exposing hidden behaviours and new knowledge from weights alone.
   - title: 'Weight Oracles: Reading Neural Network Weights with Language Models'
     authors: Krishna Kabra et al.
@@ -125,7 +125,7 @@ papers:
     date: '2026-11-06'
     url: https://arxiv.org/abs/2611.09376
     category: wsp-editing
-    citations: 5
+    citations: 7
     note: An LLM repairs a robot foundation policy's instruction grounding by editing a few dozen embedding rows with simulator feedback and no gradient updates.
   - title: 'Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations'
     authors: Junru Hu et al.
@@ -133,7 +133,7 @@ papers:
     date: '2026-11-06'
     url: https://arxiv.org/abs/2611.09382
     category: wsp-editing
-    citations: 12
+    citations: 13
     note: 'Systematic study of agent weight-editing trajectories on small LMs: small localized edits can give large gains, but generalization across tasks is inconsistent.'
   - title: 'Mixed Signals: Weight-Space Programming for EEG and ECG'
     authors: Dara Varam et al.
@@ -349,7 +349,7 @@ papers:
     venue: NeurIPS 2025
     url: https://arxiv.org/abs/2506.10943
     category: wsp-self-editing
-    citations: 109
+    citations: 110
     note: An LLM generates its own self-edits (fine-tuning data and update directives) that become persistent weight updates, trained with RL (SEAL).
   - title: Search over Self-Edit Strategies for LLM Adaptation
     authors: Alistair Cheong et al.
@@ -477,7 +477,7 @@ papers:
     url: https://arxiv.org/abs/2104.08696
     code: https://github.com/Hunter-DDM/knowledge-neurons
     category: model-editing
-    citations: 824
+    citations: 825
     note: Attributes facts to individual FFN neurons and shows that directly modifying those neurons' weights updates or erases the fact.
   - title: Fast Model Editing at Scale
     authors: Eric Mitchell et al.
@@ -487,7 +487,7 @@ papers:
     url: https://arxiv.org/abs/2110.11309
     code: https://github.com/eric-mitchell/mend
     category: model-editing
-    citations: 670
+    citations: 671
     note: Trains small hypernetworks that map a fine-tuning gradient to a low-rank weight edit, making single-fact edits fast on large models (MEND).
   - title: Editing a classifier by rewriting its prediction rules
     authors: Shibani Santurkar et al.
@@ -506,7 +506,7 @@ papers:
     url: https://arxiv.org/abs/2202.05262
     code: https://github.com/kmeng01/rome
     category: model-editing
-    citations: 3857
+    citations: 3865
     note: Locates factual recall in mid-layer MLPs and rewrites a single fact with a closed-form rank-one weight update (ROME), the template for most later locate-then-edit methods.
   - title: Mass-Editing Memory in a Transformer
     authors: Kevin Meng et al.
@@ -516,7 +516,7 @@ papers:
     url: https://arxiv.org/abs/2210.07229
     code: https://github.com/kmeng01/memit
     category: model-editing
-    citations: 1408
+    citations: 1413
     note: Extends ROME to thousands of simultaneous edits by spreading a least-squares weight update across several MLP layers (MEMIT).
   - title: 'Transformer-Patcher: One Mistake worth One Neuron'
     authors: Zeyu Huang et al.
@@ -621,7 +621,7 @@ papers:
     url: https://arxiv.org/abs/2410.02355
     code: https://github.com/jianghoucheng/AlphaEdit
     category: model-editing
-    citations: 350
+    citations: 351
     note: Projects each locate-then-edit weight update onto the null space of preserved knowledge, which greatly reduces damage from sequential edits (AlphaEdit).
   - title: 'AnyEdit: Edit Any Knowledge Encoded in Language Models'
     authors: Houcheng Jiang et al.
@@ -798,7 +798,7 @@ papers:
     url: https://arxiv.org/abs/2301.04213
     code: https://github.com/google/belief-localization
     category: editing-analysis
-    citations: 332
+    citations: 333
     note: Finds that where causal tracing localizes a fact barely predicts which layer is best to edit, questioning localization as a guide to weight edits.
   - title: 'Edit at your own risk: evaluating the robustness of edited models to distribution shifts'
     authors: Davis Brown et al.
@@ -992,7 +992,7 @@ papers:
     venue: NeurIPS 2022
     url: https://arxiv.org/abs/2111.09832
     category: task-arithmetic-merging
-    citations: 803
+    citations: 804
     note: Frames merging as combining posteriors and weights each parameter by its Fisher information when averaging models.
   - title: 'Model soups: averaging weights of multiple fine-tuned models improves accuracy without increasing inference time'
     authors: Mitchell Wortsman et al.
@@ -1002,7 +1002,7 @@ papers:
     url: https://arxiv.org/abs/2203.05482
     code: https://github.com/mlfoundations/model-soups
     category: task-arithmetic-merging
-    citations: 1984
+    citations: 1987
     note: Shows that averaging the weights of several fine-tuned models beats selecting the best one, establishing weight-space ensembling (model soups).
   - title: 'Git Re-Basin: Merging Models modulo Permutation Symmetries'
     authors: Samuel K. Ainsworth et al.
@@ -1012,7 +1012,7 @@ papers:
     url: https://arxiv.org/abs/2209.04836
     code: https://github.com/samuela/git-re-basin
     category: task-arithmetic-merging
-    citations: 625
+    citations: 627
     note: Permutes one network's neurons to match another's so independently trained models land in one basin and can be merged (Git Re-Basin).
   - title: Editing Models with Task Arithmetic
     authors: Gabriel Ilharco et al.
@@ -1022,7 +1022,7 @@ papers:
     url: https://arxiv.org/abs/2212.04089
     code: https://github.com/mlfoundations/task_vectors
     category: task-arithmetic-merging
-    citations: 1468
+    citations: 1473
     note: Introduces task vectors, the weight difference from fine-tuning, and shows that adding, negating, and combining them edits model behaviour.
   - title: Dataless Knowledge Fusion by Merging Weights of Language Models
     authors: Xisen Jin et al.
@@ -1031,7 +1031,7 @@ papers:
     venue: ICLR 2023
     url: https://arxiv.org/abs/2212.09849
     category: task-arithmetic-merging
-    citations: 485
+    citations: 486
     note: Merges linear layers in closed form by solving a regression on stored activation statistics, with no training data (RegMean).
   - title: ZipIt! Merging Models from Different Tasks without Training
     authors: George Stoica et al.
@@ -1059,7 +1059,7 @@ papers:
     url: https://arxiv.org/abs/2306.01708
     code: https://github.com/prateeky2806/ties-merging
     category: task-arithmetic-merging
-    citations: 1156
+    citations: 1160
     note: Resolves interference between task vectors by trimming small deltas and electing a sign per parameter before merging (TIES-Merging).
   - title: 'LoraHub: Efficient Cross-Task Generalization via Dynamic LoRA Composition'
     authors: Chengsong Huang et al.
@@ -1068,7 +1068,7 @@ papers:
     venue: COLM 2024
     url: https://arxiv.org/abs/2307.13269
     category: task-arithmetic-merging
-    citations: 467
+    citations: 469
     note: Composes many LoRA modules for a new task with a few examples and gradient-free search over the combination weights (LoraHub).
   - title: 'AdaMerging: Adaptive Model Merging for Multi-Task Learning'
     authors: Enneng Yang et al.
@@ -1104,13 +1104,15 @@ papers:
     venue: ICML 2024
     url: https://arxiv.org/abs/2311.03099
     category: task-arithmetic-merging
-    citations: 955
+    citations: 957
     note: Shows that most fine-tuning delta parameters can be randomly dropped and the rest rescaled, which makes merging LLM deltas easy (DARE).
   - title: Evolutionary Optimization of Model Merging Recipes
     authors: Takuya Akiba et al.
     year: 2024
     date: '2024-03-19'
+    venue: Nature Machine Intelligence 2025
     url: https://arxiv.org/abs/2403.13187
+    code: https://github.com/SakanaAI/evolutionary-model-merge
     category: task-arithmetic-merging
     citations: 292
     note: Uses evolutionary search over parameter-space and layer-routing merge recipes to build new models automatically.
@@ -1138,7 +1140,7 @@ papers:
     venue: ICLR 2025
     url: https://arxiv.org/abs/2410.19735
     category: task-arithmetic-merging
-    citations: 178
+    citations: 179
     note: Aligns LoRA updates in a shared SVD basis before merging so that existing merging methods work on LoRA models (KnOTS).
   - title: 'Task Singular Vectors: Reducing Task Interference in Model Merging'
     authors: Antonio Andrea Gargiulo et al.
@@ -1147,7 +1149,7 @@ papers:
     venue: CVPR 2025
     url: https://arxiv.org/abs/2412.00081
     category: task-arithmetic-merging
-    citations: 206
+    citations: 207
     note: Analyses task vectors layer by layer through their singular vectors, which enables compression and interference-aware merging (TSV-Merge).
   - title: 'No Task Left Behind: Isotropic Model Merging with Common and Task-Specific Subspaces'
     authors: Daniel Marczak et al.
@@ -1340,7 +1342,7 @@ papers:
     url: https://arxiv.org/abs/2301.12780
     code: https://github.com/AvivNavon/DWSNets
     category: weight-space-learning
-    citations: 147
+    citations: 148
     note: Characterizes the layers that are equivariant to neuron permutations in MLP weight spaces and builds DWSNets, a founding metanetwork architecture.
   - title: Deep Learning on Implicit Neural Representations of Shapes
     authors: Luca De Luigi et al.
@@ -1494,6 +1496,7 @@ papers:
     authors: Jonathan Kahana et al.
     year: 2024
     date: '2024-10-14'
+    venue: ICLR 2025
     url: https://arxiv.org/abs/2410.10811
     category: weight-space-learning
     citations: 19
@@ -1599,7 +1602,7 @@ papers:
     venue: COLM 2026
     url: https://arxiv.org/abs/2608.07786
     category: weight-space-learning
-    citations: 1
+    citations: 2
     note: Determines LLM lineage (independent, same series, or shared base) from spectral fingerprints of the weights alone.
   - title: Graph Metanetworks for Transformer Based Language Models
     authors: Yonathan Wolanowsky et al.
@@ -1633,7 +1636,7 @@ papers:
     venue: ICLR 2017
     url: https://arxiv.org/abs/1609.09106
     category: weight-generation
-    citations: 2162
+    citations: 2165
     note: Introduces hypernetworks, small networks that generate the weights of a larger main network.
   - title: Parameter Prediction for Unseen Deep Architectures
     authors: Boris Knyazev et al.
@@ -1668,7 +1671,7 @@ papers:
     date: '2022-11-22'
     url: https://arxiv.org/abs/2211.12485
     category: weight-generation
-    citations: 68
+    citations: 69
     note: Uses an LLM as a hypernetwork that produces adapter parameters from few-shot examples, adapting a model without backpropagation (HyperTuning).
   - title: 'HINT: Hypernetwork Instruction Tuning for Efficient Zero- & Few-Shot Generalisation'
     authors: Hamish Ivison et al.
@@ -1677,7 +1680,7 @@ papers:
     venue: ACL 2023
     url: https://arxiv.org/abs/2212.10315
     category: weight-generation
-    citations: 39
+    citations: 40
     note: A hypernetwork turns a task instruction into parameter-efficient module weights once, so the instruction need not be reprocessed (HINT).
   - title: Can We Scale Transformers to Predict Parameters of Diverse ImageNet Models?
     authors: Boris Knyazev et al.
@@ -1731,7 +1734,7 @@ papers:
     date: '2024-11-08'
     url: https://arxiv.org/abs/2411.05877
     category: weight-generation
-    citations: 38
+    citations: 39
     note: Maps a context to adapter weights in a single forward pass, so a frozen LM absorbs new information without fine-tuning.
   - title: Recurrent Diffusion for Large-Scale Parameter Generation
     authors: Kai Wang et al.
@@ -1772,7 +1775,7 @@ papers:
     venue: ICML 2025
     url: https://arxiv.org/abs/2506.06105
     category: weight-generation
-    citations: 87
+    citations: 89
     note: A hypernetwork maps a natural-language task description to LoRA weights for an LLM in a single forward pass.
   - title: 'Generative Modeling of Weights: Generalization or Memorization?'
     authors: Boya Zeng et al.
@@ -1823,7 +1826,7 @@ papers:
     date: '2026-02-06'
     url: https://arxiv.org/abs/2602.06358
     category: weight-generation
-    citations: 37
+    citations: 38
     note: Reuses a frozen LLM as an in-context hypernetwork that maps a context directly to LoRA weights.
   - title: 'Doc-to-LoRA: Learning to Instantly Internalize Contexts'
     authors: Rujikorn Charakorn et al.
@@ -1831,7 +1834,7 @@ papers:
     date: '2026-02-13'
     url: https://arxiv.org/abs/2602.15902
     category: weight-generation
-    citations: 67
+    citations: 70
     note: A hypernetwork writes a document's content into LoRA weights in one pass, internalizing context without fine-tuning.
   - title: Scaling Laws for Hypernetwork-Based Knowledge Injection in Large Language Models
     authors: Nischay Dhankhar et al.
@@ -1873,7 +1876,7 @@ papers:
     venue: EMNLP 2021
     url: https://arxiv.org/abs/2012.14913
     category: weight-interpretability
-    citations: 1885
+    citations: 1889
     note: Shows that FFN layers act as key-value memories whose weight rows can be read as input patterns and output distributions, the basis for MLP-targeted editing.
   - title: Transformer Feed-Forward Layers Build Predictions by Promoting Concepts in the Vocabulary Space
     authors: Mor Geva et al.
@@ -1882,7 +1885,7 @@ papers:
     venue: EMNLP 2022
     url: https://arxiv.org/abs/2203.14680
     category: weight-interpretability
-    citations: 688
+    citations: 693
     note: Reads FFN value vectors by projecting them onto the vocabulary, and uses the reading to switch off weights that promote toxic tokens.
   - title: Analyzing Transformers in Embedding Space
     authors: Guy Dar et al.
@@ -1891,7 +1894,7 @@ papers:
     venue: ACL 2023
     url: https://arxiv.org/abs/2209.02535
     category: weight-interpretability
-    citations: 164
+    citations: 165
     note: Projects all transformer parameters into the embedding space so weights can be read directly without running inputs.
   - title: 'Talking Heads: Understanding Inter-layer Communication in Transformer Language Models'
     authors: Jack Merullo et al.
@@ -1900,7 +1903,7 @@ papers:
     venue: NeurIPS 2024
     url: https://arxiv.org/abs/2406.09519
     category: weight-interpretability
-    citations: 54
+    citations: 55
     note: Finds low-rank communication channels between attention heads from SVDs of weight matrices and edits them to change behaviour.
   - title: Bilinear MLPs enable weight-based mechanistic interpretability
     authors: Michael T. Pearce et al.
@@ -1992,7 +1995,7 @@ papers:
     date: '2025-11-17'
     url: https://arxiv.org/abs/2511.13653
     category: weight-interpretability
-    citations: 52
+    citations: 53
     note: Trains transformers with mostly-zero weights so that their circuits are small enough to read off the weights.
   - title: What Does a Sparse Autoencoder Feature Do? A Weight-Based Account
     authors: Yiting Liu and Zhi-Hong Deng
@@ -2269,7 +2272,7 @@ papers:
     url: https://arxiv.org/abs/2305.13172
     code: https://github.com/zjunlp/EasyEdit
     category: surveys
-    citations: 526
+    citations: 527
     note: Taxonomy and empirical comparison of LLM editing methods, separating parameter-preserving from parameter-modifying approaches.
   - title: A Brief Review of Hypernetworks in Deep Learning
     authors: Vinod Kumar Chauhan et al.
@@ -2530,3 +2533,36 @@ papers:
     code: https://github.com/anadim/weight-space-micromachines
     category: wsp-writing
     note: A coding agent writes small exact modules (a calculator, a mistake detector, image inputs, memory) into weight space and attaches them to a frozen LLM, where they stay off until needed and lift benchmarks, alone or combined with RL.
+  - title: Can a Frontier LLM Repair a Quantized Network by Tool-Free Weight-Space Programming?
+    authors: Steffen Urban
+    year: 2026
+    date: '2026-11-24'
+    url: https://arxiv.org/abs/2611.33031
+    code: https://github.com/urbste/weight-space-programming-ptq
+    category: wsp-editing
+    citations: 0
+    note: Shows that an LLM reasoning over integer kernel weights as text, with no tools or data, can rebalance 4-bit rounding errors and recover most of the accuracy lost to naive quantization.
+  - title: Reading, Writing and Repairing Game-Theoretic Policies in Weight Space
+    authors: Ancil Crayton
+    year: 2026
+    date: '2026-11-24'
+    url: https://arxiv.org/abs/2611.31979
+    category: wsp-reading
+    citations: 0
+    note: Uses small recurrent policies with exactly checkable answers to separate how well a mid-size open LLM reads, writes and repairs weights, finding reading and writing reliable but repair weak.
+  - title: 'A Bias in Disguise: Tiny Gradient Edits Stop a Small Language Model''s Thinking Loops and Complement a Frontier Model''s Weight Edit'
+    authors: Hussamuddin Syed
+    year: 2026
+    date: '2026-11-24'
+    url: https://arxiv.org/abs/2611.33133
+    category: wsp-critiques
+    citations: 0
+    note: Supplies the gradient baseline for the headline LLM-written MATH-500 edit, shows the effect reduces to a few constant residual-stream vectors, and finds the two edits stack.
+  - title: Reinforcement Learning for Neural Model Editing
+    authors: Shaivi Malik
+    year: 2026
+    date: '2026-06-11'
+    url: https://arxiv.org/abs/2606.13461
+    category: wsp-editing
+    citations: 0
+    note: Frames weight editing as an RL environment in which a learned agent scales or shifts individual weights from reward feedback, an early non-LLM take on agent-driven weight edits.
