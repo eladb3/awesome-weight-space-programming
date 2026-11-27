@@ -20,13 +20,13 @@ Publication dates are those of the first public version, usually arXiv v1. Citat
 
 ## Contents
 
-- [Weight-Space Programming](#weight-space-programming) (71)
+- [Weight-Space Programming](#weight-space-programming) (73)
   - [Reading Weights](#reading-weights) (6)
-  - [Editing and Repairing Models](#editing-and-repairing-models) (24)
+  - [Editing and Repairing Models](#editing-and-repairing-models) (25)
   - [Adding Capabilities to Trained Models](#adding-capabilities-to-trained-models) (3)
   - [Writing Weights from Scratch](#writing-weights-from-scratch) (14)
   - [Self-Editing Models](#self-editing-models) (7)
-  - [Replications, Critiques and Alternatives](#replications-critiques-and-alternatives) (14)
+  - [Replications, Critiques and Alternatives](#replications-critiques-and-alternatives) (15)
   - [Security](#security) (3)
 - [Foundations and Related Areas](#foundations-and-related-areas) (194)
   - [Model and Knowledge Editing](#model-and-knowledge-editing) (38)
@@ -69,6 +69,7 @@ An LLM or agent changes an existing network's weights to fix a failure or change
 - [Weight Coding: Evolving Web-Scale Recommenders through Direct Weight Edits with LLM Agents](https://arxiv.org/abs/2611.29613) - *Junpeng Hou et al., arXiv preprint. Published 2026-11-22, 0 citations.* Brings agent-driven weight editing to production-scale recommenders, where an LLM agent hypothesises and executes direct parameter edits that beat a post-training fine-tune.
 - [Writing Weights or Training Them? Spatial Reasoning through Weight-Space Programming and Low-Rank Adaptation](https://arxiv.org/abs/2611.27089) - *Yalin Yang et al., arXiv preprint. Published 2026-11-20, 0 citations.* Compares an LLM-written weight patch with LoRA fine-tuning on spatial-reasoning tasks for a small LM.
 - [Weight-space programming and mechanistic interpretability for model editing in particle physics](https://arxiv.org/abs/2611.27079) - *Raphaël Bonnet-Guerrini et al., arXiv preprint. Published 2026-11-20, 0 citations.* Combines LLM weight-space programming with SAE-guided analysis to remove an infrared-safety violation from a particle-physics foundation model by direct weight edits.
+- [SGNE-CC v2: Editing 205 Weight Columns in DeepSeek-R1-Distill-Qwen-1.5B Improves Greedy Accuracy and Reduces Unfinished Responses](https://doi.org/10.5281/zenodo.24398165) - *Igor M. Zhuk, arXiv preprint. Published 2026-11-20.* Applies norm-preserving rotation to 205 MLP down_proj columns in DeepSeek-R1-Distill-Qwen-1.5B, raising pooled greedy accuracy from 60.5% to 69.5% and cutting unfinished responses from 28.9% to 3.9% across 1,054 prompts at a 32k token budget. [[Code](https://github.com/Nondual-Observer/deepseek-r1-1.5b-sgne-cc-v2)]
 - [Weight-Space Programming Writes In-Context Learning and Matches Fine-Tuning in Language Models](https://arxiv.org/abs/2611.26841) - *Konstantinos Skianis and Aristidis Likas, arXiv preprint. Published 2026-11-19, 0 citations.* Frontier editors turn in-context examples into MLP weight edits so a weaker LM performs the task with an empty prompt, matching ICL and LoRA fine-tuning.
 - [Training Vision Models for LLM-Driven Weight-Space Programming](https://arxiv.org/abs/2611.26408) - *Timo Ropinski and Sebastian Kranz, arXiv preprint. Published 2026-11-19, 1 citation.* Benchmarks LLM weight editing of CNNs and ViTs at scale and proposes training networks to be easier for LLMs to edit.
 - [Keel: A Frontier Model Teaches a Vision-Language Model by Rewriting Its Weights](https://arxiv.org/abs/2611.25257) - *Jiajun Fan et al., arXiv preprint. Published 2026-11-18, 0 citations.* A frontier model diagnoses why a small VLM falls into reasoning loops and fixes it by rewriting the VLM's weights, given only the symptom.
@@ -148,6 +149,7 @@ Independent replications, tests of what the reading and writing really rely on, 
 - [Replicating and Extending Weight-Space Programming: Frontier LLMs Compile Programs into Weights and Read Input Layers](https://arxiv.org/abs/2611.21449) - *Roksana Goworek et al., arXiv preprint. Published 2026-11-16, 1 citation.* Independent replication of LLM weight-space programming; finds that written networks behave like compiled programs and that weight reading relies mostly on the input layer.
 - [Just sort it! A note on the LP behind rank-one anti-loop edits](https://arxiv.org/abs/2611.21432) - *Matteo Fischetti, arXiv preprint. Published 2026-11-16, 1 citation.* Shows that the sparse linear program behind the agent's rank-one anti-loop edit can be replaced by a simple sort, simplifying a celebrated WSP fix.
 - [Same Fix, Different Weights: Replicating Weight-Space Programming with Claude](https://arxiv.org/abs/2611.20953) - *Subham Kundu, arXiv preprint. Published 2026-11-16, 1 citation.* Pre-registered replication of weight reading, repair, and writing with a different frontier model, with untrained-network and permutation controls.
+- [Weight-Space Audit of MIT-p50c and DNA Weight Editing (SGNE-CC) on Qwen3.5-0.8B at a 32,768-Token Generation Limit](https://doi.org/10.5281/zenodo.24235218) - *Igor M. Zhuk, arXiv preprint. Published 2026-11-15.* Audits the MIT-p50c Qwen3.5-0.8B patch under greedy decoding (T=0, no presence penalty) at 32k tokens and introduces SGNE-CC, a norm-preserving rotation of MLP down_proj, GatedDeltaNet out_proj, and one gate row that holds greedy accuracy. [[Code](https://github.com/Nondual-Observer/dna-weight-editing)]
 - [Can Large Language Models Optimize Pretrained Neural Network Weights? A Multi-Phase Empirical Evaluation of Gradient-Free Editing in YOLO26 Object Detection](https://arxiv.org/abs/2611.17789) - *Mohamed Abdallah Salem, arXiv preprint. Published 2026-11-13, 0 citations.* A negative result: on YOLO detectors, LLM-proposed weight edits show no significant advantage over a matched random-policy control or classical gradient-free optimizers.
 - [Tree-Ising: Repairing Language Models with Bit-Level Ising Edits](https://arxiv.org/abs/2611.14210) - *Hadi Salloum and Ammar Ali, arXiv preprint. Published 2026-11-10, 1 citation.* Replaces an LLM agent's weight repair with a sparse discrete optimization over the model's own bits, a solver-based contrast to agent-driven editing.
 - [Can an LLM Actually Reason and Program about Neural Network's Weights or is it just memorization on steroids? Exploring "Weight-Space Programming"](https://arxiv.org/abs/2611.08070) - *Nazmus Sakib Ahmed, arXiv preprint. Published 2026-11-05, 11 citations.* Probes whether an LLM reading raw CNN weights is reasoning about the weights or relying on local arithmetic plus memorized dataset priors.
@@ -462,4 +464,4 @@ Contributions are welcome! The list is generated from [`papers.yaml`](papers.yam
 
 To the extent possible under law, the contributors have waived all copyright and related or neighboring rights to this work. See [LICENSE](LICENSE).
 
-<sub>294 papers. This file is generated from `papers.yaml` by `scripts/build_readme.py`; do not edit it by hand.</sub>
+<sub>296 papers. This file is generated from `papers.yaml` by `scripts/build_readme.py`; do not edit it by hand.</sub>
