@@ -58,6 +58,8 @@ queries:
     - '"automated interpretability" AND "edit"'
     - '"LoRA" AND "natural language" AND "weights"'
     - '"own weights" AND "edit"'
+    - "neuron programming"
+    - "agentic model editing"
     - '"coding agent" AND "weights"'
     - "weight coding"
     - "raw weights"
