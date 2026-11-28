@@ -77,7 +77,7 @@ categories:
     description: Overviews of one or more of these areas.
 
 # Date of the last citation-count refresh (scripts/refresh_metadata.py).
-citations_updated: '2026-11-27'
+citations_updated: '2026-11-28'
 
 papers:
   - title: Learning to Interpret Weight Differences in Language Models
@@ -1880,7 +1880,7 @@ papers:
     venue: EMNLP 2021
     url: https://arxiv.org/abs/2012.14913
     category: weight-interpretability
-    citations: 1898
+    citations: 1897
     note: Shows that FFN layers act as key-value memories whose weight rows can be read as input patterns and output distributions, the basis for MLP-targeted editing.
   - title: Transformer Feed-Forward Layers Build Predictions by Promoting Concepts in the Vocabulary Space
     authors: Mor Geva et al.
@@ -2628,3 +2628,52 @@ papers:
     category: task-arithmetic-merging
     citations: 0
     note: Extends mode connectivity from paths and sheets to a learned high-dimensional Bézier manifold linking many independently trained specialists, a weight-space region of multi-task solutions.
+  - title: 'Spec2Weights: Certifying Networks that a Language Model Writes from a Specification'
+    authors: Soumik Bhattacharjee et al.
+    year: 2026
+    date: '2026-11-25'
+    url: https://arxiv.org/abs/2611.34711
+    category: wsp-writing
+    citations: 0
+    note: Pairs LLM-written MLP, CNN, RNN and GNN weights with float32-exact proofs (enumeration, SMT, induction), turning hand-written networks into certified programs and pinpointing where each one stops being exact.
+  - title: Sparks of Weight-Space Programming for Robot Foundation Models
+    authors: Kyle Coelho and Eugen Solowjow
+    year: 2026
+    date: '2026-11-24'
+    url: https://arxiv.org/abs/2611.31715
+    category: wsp-editing
+    citations: 0
+    note: Brings agent-driven weight edits to a large vision-language-action policy, repurposing a few near-silent action-expert neurons so they fire in a recurring stuck state and trigger a specified corrective motion.
+  - title: 'Scalpel and Brush: Pruning and Targeted Weight Editing of a Small Language Model by a Single LLM Agent'
+    authors: Sergei Koltcov et al.
+    year: 2026
+    date: '2026-11-24'
+    url: https://arxiv.org/abs/2611.33426
+    category: wsp-editing
+    citations: 0
+    note: Frames agent weight repair and neuron pruning as one sparse-edit problem and runs random-edit, prompt-only and non-LLM controls, finding that standard procedures recover much of the gain once told where the agent edited.
+  - title: 'Distilling Instructions into Weights: Closed-Form Edits Fix a Robot Policy''s Misreading'
+    authors: Ali-Adeeb Abbas and Esmaeil Seraj
+    year: 2026
+    date: '2026-11-09'
+    url: https://arxiv.org/abs/2611.11894
+    code: https://github.com/adeeb10abbas/weightsmith
+    category: wsp-editing
+    citations: 0
+    note: Diagnoses a robot policy's misbound instruction and copies the effect of a correct rewording into its MLP weights in closed form, with a comparison against blind Claude editors that shows a known-good input is what makes edits work.
+  - title: 'GradReason: LLMs as Meta-Learners that Replace Training Epochs with Training-Data-Free Weight Updates'
+    authors: Ali Mohammadi Ruzbahani et al.
+    year: 2026
+    date: '2026-11-07'
+    url: https://arxiv.org/abs/2611.11005
+    category: wsp-editing
+    citations: 2
+    note: Lets an LLM agent read weight and gradient snapshots mid-training and submit programs that write new weights in place of data epochs, then shows the discovered update (snapshot averaging) works equally well as a fixed rule.
+  - title: Function-Preserving Audits of Visual Weight Readers
+    authors: Sungguk Cha et al.
+    year: 2026
+    date: '2026-11-04'
+    url: https://arxiv.org/abs/2611.05798
+    category: wsp-critiques
+    citations: 1
+    note: Tests weight readers, including LLMs reading numerical weights, against function-preserving reparameterizations, showing that high accuracy can hide reliance on parameter coordinates rather than the encoded function.

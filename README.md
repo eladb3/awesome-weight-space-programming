@@ -16,17 +16,17 @@ Out of scope: ordinary fine-tuning, parameter-efficient fine-tuning that is only
 
 Entries are sorted newest first within each section. Every entry has been checked against its arXiv or publisher page.
 
-Publication dates are those of the first public version, usually arXiv v1. Citation counts are from [Semantic Scholar](https://www.semanticscholar.org/), updated 2026-11-27.
+Publication dates are those of the first public version, usually arXiv v1. Citation counts are from [Semantic Scholar](https://www.semanticscholar.org/), updated 2026-11-28.
 
 ## Contents
 
-- [Weight-Space Programming](#weight-space-programming) (71)
+- [Weight-Space Programming](#weight-space-programming) (77)
   - [Reading Weights](#reading-weights) (6)
-  - [Editing and Repairing Models](#editing-and-repairing-models) (24)
+  - [Editing and Repairing Models](#editing-and-repairing-models) (28)
   - [Adding Capabilities to Trained Models](#adding-capabilities-to-trained-models) (3)
-  - [Writing Weights from Scratch](#writing-weights-from-scratch) (14)
+  - [Writing Weights from Scratch](#writing-weights-from-scratch) (15)
   - [Self-Editing Models](#self-editing-models) (7)
-  - [Replications, Critiques and Alternatives](#replications-critiques-and-alternatives) (14)
+  - [Replications, Critiques and Alternatives](#replications-critiques-and-alternatives) (15)
   - [Security](#security) (3)
 - [Foundations and Related Areas](#foundations-and-related-areas) (194)
   - [Model and Knowledge Editing](#model-and-knowledge-editing) (38)
@@ -64,7 +64,9 @@ An LLM or agent changes an existing network's weights to fix a failure or change
 
 - [Few-Shot Adaptation of Vision-Language Models via Agentic Model Editing](https://arxiv.org/abs/2611.34036) - *Yusheng Zhao et al., arXiv preprint. Published 2026-11-25, 0 citations.* An LLM agent inspects CLIP's parameters and activations and writes a per-domain adaptation program, including encoder weight edits, that beats prompt and adapter tuning even without backpropagation.
 - [Kolpona: An Agentic Framework with Gradient-Free Neuron Programming for RTL Generation](https://arxiv.org/abs/2611.33973) - *Musa Tur Farazi et al., arXiv preprint. Published 2026-11-25, 0 citations.* Writes a handful of single neurons in closed form into an open-weight code LLM to remove failure habits, kept only when held-out testbenches improve, and roughly doubles Verilog pass rates without training.
+- [Scalpel and Brush: Pruning and Targeted Weight Editing of a Small Language Model by a Single LLM Agent](https://arxiv.org/abs/2611.33426) - *Sergei Koltcov et al., arXiv preprint. Published 2026-11-24, 0 citations.* Frames agent weight repair and neuron pruning as one sparse-edit problem and runs random-edit, prompt-only and non-LLM controls, finding that standard procedures recover much of the gain once told where the agent edited.
 - [Can a Frontier LLM Repair a Quantized Network by Tool-Free Weight-Space Programming?](https://arxiv.org/abs/2611.33031) - *Steffen Urban, arXiv preprint. Published 2026-11-24, 0 citations.* Shows that an LLM reasoning over integer kernel weights as text, with no tools or data, can rebalance 4-bit rounding errors and recover most of the accuracy lost to naive quantization. [[Code](https://github.com/urbste/weight-space-programming-ptq)]
+- [Sparks of Weight-Space Programming for Robot Foundation Models](https://arxiv.org/abs/2611.31715) - *Kyle Coelho and Eugen Solowjow, arXiv preprint. Published 2026-11-24, 0 citations.* Brings agent-driven weight edits to a large vision-language-action policy, repurposing a few near-silent action-expert neurons so they fire in a recurring stuck state and trigger a specified corrective motion.
 - [TowerBridge: Bridging the Dual-Encoder Modality Gap via Weight-Space Programming](https://arxiv.org/abs/2611.31233) - *Hani Alomari et al., arXiv preprint. Published 2026-11-23, 0 citations.* An LLM agent inspects both CLIP towers and writes closed-form weight edits that fix hard-negative retrieval, and its recurring edit is then distilled into a reusable recipe.
 - [Weight Coding: Evolving Web-Scale Recommenders through Direct Weight Edits with LLM Agents](https://arxiv.org/abs/2611.29613) - *Junpeng Hou et al., arXiv preprint. Published 2026-11-22, 0 citations.* Brings agent-driven weight editing to production-scale recommenders, where an LLM agent hypothesises and executes direct parameter edits that beat a post-training fine-tune.
 - [Writing Weights or Training Them? Spatial Reasoning through Weight-Space Programming and Low-Rank Adaptation](https://arxiv.org/abs/2611.27089) - *Yalin Yang et al., arXiv preprint. Published 2026-11-20, 0 citations.* Compares an LLM-written weight patch with LoRA fine-tuning on spatial-reasoning tasks for a small LM.
@@ -81,6 +83,8 @@ An LLM or agent changes an existing network's weights to fix a failure or change
 - [Weight-Space Programming Changes How an LLM Uses Python for Computational Biology](https://arxiv.org/abs/2611.20566) - *Makoto Sato, arXiv preprint. Published 2026-11-16, 0 citations.* A frontier LLM edits a small LM's weights and changes how it uses Python on computational-biology problems, nearly doubling strictly correct answers.
 - [Weights & Caches: LLMs Can Program Tabular Foundation Models](https://arxiv.org/abs/2611.20174) - *Shi Bin Hoo et al., arXiv preprint. Published 2026-11-15, 0 citations.* Shows that LLMs can program statistical computations into a tabular foundation model's weights directly.
 - [Mixed Signals: Weight-Space Programming for EEG and ECG](https://arxiv.org/abs/2611.13758) - *Dara Varam et al., arXiv preprint. Published 2026-11-10.* Applies LLM weight reading and editing to EEG and ECG models, repairing planted faults by reasoning rather than gradient descent.
+- [Distilling Instructions into Weights: Closed-Form Edits Fix a Robot Policy's Misreading](https://arxiv.org/abs/2611.11894) - *Ali-Adeeb Abbas and Esmaeil Seraj, arXiv preprint. Published 2026-11-09, 0 citations.* Diagnoses a robot policy's misbound instruction and copies the effect of a correct rewording into its MLP weights in closed form, with a comparison against blind Claude editors that shows a known-good input is what makes edits work. [[Code](https://github.com/adeeb10abbas/weightsmith)]
+- [GradReason: LLMs as Meta-Learners that Replace Training Epochs with Training-Data-Free Weight Updates](https://arxiv.org/abs/2611.11005) - *Ali Mohammadi Ruzbahani et al., arXiv preprint. Published 2026-11-07, 2 citations.* Lets an LLM agent read weight and gradient snapshots mid-training and submit programs that write new weights in place of data epochs, then shows the discovered update (snapshot averaging) works equally well as a fixed rule.
 - [Exploring Weight-Space Programming: Capabilities, Generalization, and Limitations](https://arxiv.org/abs/2611.09382) - *Junru Hu et al., arXiv preprint. Published 2026-11-06, 15 citations.* Systematic study of agent weight-editing trajectories on small LMs: small localized edits can give large gains, but generalization across tasks is inconsistent.
 - [Can LLMs Debug Robots by Editing Their Weights?](https://arxiv.org/abs/2611.09376) - *Jusheng Zhang et al., arXiv preprint. Published 2026-11-06, 9 citations.* An LLM repairs a robot foundation policy's instruction grounding by editing a few dozen embedding rows with simulator feedback and no gradient updates.
 - [WeightLoop: Weight-Space Programming with Experimental Feedback](https://arxiv.org/abs/2611.07319) - *Mengran Li et al., arXiv preprint. Published 2026-11-05, 7 citations.* Turns experimental feedback into persistent weight corrections of scientific predictors through LLM-written update programs.
@@ -103,6 +107,7 @@ An LLM or agent writes new modules, neurons, or circuits into an existing traine
 
 An LLM writes every weight of a new network from a specification, with no training.
 
+- [Spec2Weights: Certifying Networks that a Language Model Writes from a Specification](https://arxiv.org/abs/2611.34711) - *Soumik Bhattacharjee et al., arXiv preprint. Published 2026-11-25, 0 citations.* Pairs LLM-written MLP, CNN, RNN and GNN weights with float32-exact proofs (enumeration, SMT, induction), turning hand-written networks into certified programs and pinpointing where each one stops being exact.
 - [Looped Weight-Space Programming: LLM-Written Transformers for Long Algorithmic Reasoning](https://mbzuai-oryx.github.io/LoopedWSP/) - *Abdelrahman Elsayed et al., Blog post (MBZUAI). Published 2026-11-23.* An LLM hand-writes every weight of a small looped transformer that repeats one block as long as needed, solving all of the hard mazes it fails to solve itself and scaling to far longer algorithmic tasks. [[Code](https://github.com/mbzuai-oryx/LoopedWSP)]
 - [Weight-Space Programming Doesn't Need Transformers](https://arxiv.org/abs/2611.22055) - *Hyunjong Ok and Jaeho Lee, arXiv preprint. Published 2026-11-17, 3 citations.* Lets LLMs that write weights by hand also choose the architecture, and finds they need not keep the transformer.
 - [Weight-Space Programming for Materials Science](https://arxiv.org/abs/2611.22013) - *Sk Md Ahnaf Akif Alvi and Raymundo Arróyave, arXiv preprint. Published 2026-11-17, 0 citations.* An LLM writes the weights of a small candidate-ranking network from a task description, for materials discovery with almost no labels.
@@ -152,6 +157,7 @@ Independent replications, tests of what the reading and writing really rely on, 
 - [Tree-Ising: Repairing Language Models with Bit-Level Ising Edits](https://arxiv.org/abs/2611.14210) - *Hadi Salloum and Ammar Ali, arXiv preprint. Published 2026-11-10, 1 citation.* Replaces an LLM agent's weight repair with a sparse discrete optimization over the model's own bits, a solver-based contrast to agent-driven editing.
 - [Can an LLM Actually Reason and Program about Neural Network's Weights or is it just memorization on steroids? Exploring "Weight-Space Programming"](https://arxiv.org/abs/2611.08070) - *Nazmus Sakib Ahmed, arXiv preprint. Published 2026-11-05, 11 citations.* Probes whether an LLM reading raw CNN weights is reasoning about the weights or relying on local arithmetic plus memorized dataset priors.
 - [Computation, not weight access: large language models as auditors of clinical prediction networks](https://arxiv.org/abs/2611.07847) - *Zhiyu Liu and Xinyu Yang, arXiv preprint. Published 2026-11-05, 4 citations.* Separates an LLM reading weights in its prompt from an LLM running code on them, and shows that reliable auditing of clinical networks comes from computation, not weight access.
+- [Function-Preserving Audits of Visual Weight Readers](https://arxiv.org/abs/2611.05798) - *Sungguk Cha et al., arXiv preprint. Published 2026-11-04, 1 citation.* Tests weight readers, including LLMs reading numerical weights, against function-preserving reparameterizations, showing that high accuracy can hide reliance on parameter coordinates rather than the encoded function.
 
 **[⬆ back to top](#contents)**
 
@@ -401,7 +407,7 @@ Reading what a network computes directly from its parameters, including paramete
 - [Talking Heads: Understanding Inter-layer Communication in Transformer Language Models](https://arxiv.org/abs/2406.09519) - *Jack Merullo et al., NeurIPS 2024. Published 2024-06-13, 55 citations.* Finds low-rank communication channels between attention heads from SVDs of weight matrices and edits them to change behaviour.
 - [Analyzing Transformers in Embedding Space](https://arxiv.org/abs/2209.02535) - *Guy Dar et al., ACL 2023. Published 2022-09-06, 166 citations.* Projects all transformer parameters into the embedding space so weights can be read directly without running inputs.
 - [Transformer Feed-Forward Layers Build Predictions by Promoting Concepts in the Vocabulary Space](https://arxiv.org/abs/2203.14680) - *Mor Geva et al., EMNLP 2022. Published 2022-03-28, 696 citations.* Reads FFN value vectors by projecting them onto the vocabulary, and uses the reading to switch off weights that promote toxic tokens.
-- [Transformer Feed-Forward Layers Are Key-Value Memories](https://arxiv.org/abs/2012.14913) - *Mor Geva et al., EMNLP 2021. Published 2020-12-29, 1,898 citations.* Shows that FFN layers act as key-value memories whose weight rows can be read as input patterns and output distributions, the basis for MLP-targeted editing.
+- [Transformer Feed-Forward Layers Are Key-Value Memories](https://arxiv.org/abs/2012.14913) - *Mor Geva et al., EMNLP 2021. Published 2020-12-29, 1,897 citations.* Shows that FFN layers act as key-value memories whose weight rows can be read as input patterns and output distributions, the basis for MLP-targeted editing.
 
 **[⬆ back to top](#contents)**
 
@@ -462,4 +468,4 @@ Contributions are welcome! The list is generated from [`papers.yaml`](papers.yam
 
 To the extent possible under law, the contributors have waived all copyright and related or neighboring rights to this work. See [LICENSE](LICENSE).
 
-<sub>294 papers. This file is generated from `papers.yaml` by `scripts/build_readme.py`; do not edit it by hand.</sub>
+<sub>300 papers. This file is generated from `papers.yaml` by `scripts/build_readme.py`; do not edit it by hand.</sub>

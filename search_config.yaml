@@ -3,7 +3,7 @@
 # abstract shows it fits the scope in README.md, never because of a keyword match.
 # Edit freely; phrases are matched against arXiv abstracts (abs:) and titles (ti:).
 
-arxiv_categories: [cs.LG, cs.CL, cs.AI, cs.CV, cs.NE, stat.ML]
+arxiv_categories: [cs.LG, cs.CL, cs.AI, cs.CV, cs.NE, cs.RO, stat.ML]
 
 lookback_days: 7
 
@@ -63,6 +63,10 @@ queries:
     - '"coding agent" AND "weights"'
     - "weight coding"
     - "raw weights"
+    - '"reads and writes" AND "weights"'
+    - "write the weights"
+    - "weight edits"
+    - '"weight" AND "readers"'
 
 # Example arXiv API call (spaces as %20, quotes as %22, AND as +AND+):
 # https://export.arxiv.org/api/query?search_query=abs:%22model%20editing%22&sortBy=submittedDate&sortOrder=descending&max_results=100
